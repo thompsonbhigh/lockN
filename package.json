@@ -1,0 +1,23 @@
+{
+  "name": "lockn",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/thompsonhigh/lockN#readme",
+  "bugs": {
+    "url": "https://github.com/thompsonhigh/lockN/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thompsonhigh/lockN.git"
+  },
+  "license": "ISC",
+  "author": "Thompson High",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
