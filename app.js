@@ -1,14 +1,24 @@
 const express = require('express'),
       login   = require('./routes/login.js');
 
+const session = require('express-session');
+
 const app = express();
 const port = 3000;
 
-app.use(express.static(__dirname + '/styles'));
+app.set('view engine', 'ejs');
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: 'baines_secret_key'
+}));
+
+app.use(express.static(__dirname + '/public'));
 app.use('/login', login);
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  user = req.session.user;
+  res.render('home');
 });
 
 app.listen(port, () => {
