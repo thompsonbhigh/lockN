@@ -16,6 +16,7 @@ app.use(session({
 app.use(express.static(__dirname + '/public'));
 app.use('/login', login);
 
+user = null;
 app.get('/', (req, res) => {
   user = req.session.user;
   res.render('home');

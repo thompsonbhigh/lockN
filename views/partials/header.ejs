@@ -1,3 +1,8 @@
 <div class="mainHeader">
     <h1>lockN</h1>
+    <% if (user) { %>
+            <a href="/logout" class="login">Logout</a>
+        <% } else { %>
+            <a href="/login" class="login">Login</a>
+        <% } %>
 </div>

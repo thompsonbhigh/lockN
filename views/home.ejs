@@ -8,28 +8,26 @@
 
     <header>
         <%- include ('partials/header') %>
-        <% if (user) { %>
-            <a href="/logout" class="login">Logout</a>
-        <% } else { %>
-            <a href="/login" class="login">Login</a>
-        <% } %>
     </header>
 
     <body>
         <div class="flex-container">
-            <div>
+            <div class="card">
                 <h2>Training Plans</h2>
                 <p>Customized workout routines to help you achieve your fitness goals.</p>
+                <a href="/plans"></a>
             </div>
 
-            <div>
+            <div class="card">
                 <h2>Workout Tracking</h2>
                 <p>Log your exercises, sets, reps, and weights to monitor your progress over time.</p>
+                <a href="/track"></a>
             </div>
 
-            <div>
+            <div class="card">
                 <h2>Nutrition</h2>
                 <p>Meal planning and nutritional guidance to complement your training regimen.</p>
+                <a href="/nutrition"></a>
             </div>
         </div>
     </body>
