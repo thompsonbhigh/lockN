@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style1.css" type="text/css">
+    <script src="addExercise.js" defer></script>
+    <title>Add</title>
+</head>
+<body>
+    <div class="add-container">
+        <table>
+            <tr>
+                <th>
+                    <form action="../addExercise/search" method="GET">
+                        <input type="text" name="query" placeholder="Search...">
+                        <button type="submit">Search</button>
+                    </form>
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <% exercises.forEach(exercise => { %>
+            <tr>
+                <td><%= exercise.name %></td>
+                <td><%= exercise.muscle %></td>
+                <td><button class="add-btn" data-id="<%= exercise.id %>">+</button></td>
+            </tr>
+            <% }); %>
+        </table>
+    </div>
+</body>
+</html>
