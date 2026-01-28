@@ -116,12 +116,42 @@ h2 {
     margin: auto;
     padding: 20px;
     padding-top: 0px;
-    background-image: linear-gradient(to right, #443C68, #393053, #443C68);
-    border-color: #635985;
-    border-radius: 10px;
-    border-width: 2px;
-    border-style: solid;
+    background-color: #4D4D4DB3;
     text-align: center;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container input {
+    display: flex;
+    justify-content: center;
+    background-color: #4D4D4D;
+    border: none;
+    margin: 1vh;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 3vh;
+    width: 50vh;
+}
+
+.login-container button {
+    padding: 1vh 2vh;
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    border: none;
+    width: 50vh;
+    margin: 2vh;
+}
+
+.login-container a {
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 .plan-container {
@@ -176,20 +206,30 @@ h2 {
     justify-content: center;
     align-items: center;
     min-height: 95vh;
+    overflow: hidden;
 }
 
 .add-container table {
     border-collapse: collapse;
-    width: 40%;
+    width: 80vh;
     margin-top: 20px;
+    display: inline-block;
+    overflow-y: scroll;
+    height: 80vh;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 .add-container th {
     font-family: 'IBM Plex Mono', monospace;
     color: white;
-    background-color: #3d3d3db3;
+    background-color: #3d3d3d;
     font-size: 30px;
     padding: 10px;
+    position: absolute;
+    width: 70.2vh;
 }
 
 .add-container tr {
@@ -216,4 +256,35 @@ h2 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.add-container input {
+    background-color: #4D4D4D;
+    border: none;
+    margin: 1vh;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 3vh;
+    width: 100%;
+    height: 5vh;
+}
+
+.add-container button {
+    font-size: 18px;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    border: none;
+    width: 10vh;
+    margin: 1vh;
+    height: 5vh;
+}
+
+.add-container form {
+    display: flex;
+    flex-direction: row;
+}
+
+.blank-row {
+    height: 8vh;
+    background-color: transparent;
 }

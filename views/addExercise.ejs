@@ -10,17 +10,19 @@
 <body>
     <div class="add-container">
         <table>
-            <tr>
+            <thead>
                 <th>
                     <form action="../addExercise/search" method="GET">
                         <input type="text" name="query" placeholder="Search...">
-                        <button type="submit">Search</button>
                     </form>
                 </th>
-                <th></th>
-                <th></th>
-            </tr>
+            </thead>
 
+            <tr class="blank-row">
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
             <% exercises.forEach(exercise => { %>
             <tr>
                 <td><%= exercise.name %></td>

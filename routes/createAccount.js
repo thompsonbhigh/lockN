@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const db = require('../db');
+
 router.get('/', (req, res) => {
     res.render('createAccount.ejs');
 });
@@ -9,6 +10,12 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     const username = req.body.uname;
     const password = req.body.psw;
+    const confirmPassword = req.body.confpsw;
+
+    if (!(password === confirmPassword)) {
+        res.redirect('../createAccount');
+        return;
+    }
     
     const salt = 10;
 

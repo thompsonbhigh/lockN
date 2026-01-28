@@ -19,7 +19,7 @@ app.use(session({
 }));
 
 app.use(session({
-    secret: 'kiosk_secret_key',
+    secret: '72Ghis^%&nDjhs8@^bDj8',
     resave: false,
     saveUninitialized: true,
 }));
@@ -36,7 +36,8 @@ app.use('/createAccount', createAccount);
 user = null;
 app.get('/', (req, res) => {
   user = req.session.user;
-  res.render('home');
+  console.log(user);
+  res.render('home', user);
 });
 
 app.listen(port, () => {

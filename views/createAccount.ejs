@@ -14,9 +14,17 @@
         <div class="login-container">
             <h2>Create an Account</h2>
             <form action="/createAccount" method="POST">
-                <p><input type="text" size="20%" placeholder="Username" name="uname" required></p>
+                <div>
+                    <input type="text" size="20%" placeholder="Username" name="uname" required>
+                </div>
 
-                <p><input type="password" size="20%" placeholder="Password"  name="psw" required></p>
+                <div>
+                    <input type="password" size="20%" placeholder="Password"  name="psw" required>
+                </div>
+
+                <div>
+                    <input type="password" size="20%" placeholder="Confirm Password"  name="confpsw" required>
+                </div>
 
                 <button type="submit">Create Account</button>
             </form>
