@@ -6,26 +6,31 @@
         <link rel="stylesheet" href="styles/style1.css" type="text/css">
     </head>
 
-    <header>
-        <%- include ('partials/header') %>
-    </header>
-
     <body>
+        <div class="mainHeader">
+            <img class="logo" src="../../assests/images/lockNWhite-01.png">
+            <br>
+            <% if (user) { %>
+                <a href="/logout" class="login">Logout</a>
+            <% } else { %>
+                <a href="/login" class="login">Login</a>
+            <% } %>
+        </div>
         <div class="flex-container">
             <div class="card">
-                <h2>Training Plans</h2>
+                <h2>WORKOUTS</h2>
                 <p>Customized workout routines to help you achieve your fitness goals.</p>
                 <a href="/planSelection"></a>
             </div>
 
             <div class="card">
-                <h2>Workout Tracking</h2>
+                <h2>TO-DO</h2>
                 <p>Log your exercises, sets, reps, and weights to monitor your progress over time.</p>
                 <a href="/track"></a>
             </div>
 
             <div class="card">
-                <h2>Nutrition</h2>
+                <h2>GOALS</h2>
                 <p>Meal planning and nutritional guidance to complement your training regimen.</p>
                 <a href="/nutrition"></a>
             </div>

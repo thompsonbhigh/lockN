@@ -1,34 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 html {
-    background-color: #18122B;
+    background-color: black;
     background-size: cover;
+    width: 100%;
+    height: 99%;
+    margin: 0;
+    padding: 0;
 }
 
-@font-face {
-    font-family: "TitleText";
-    src: url(../fonts/AldotheApache.ttf);
+body::after {
+  content: "";
+  background: url(../assests/images/plastic-texture.jpg);
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
 }
 
+.logo {
+    max-width: 10vh;
+}
 .mainHeader {
-    background-image: linear-gradient(to right, #443C68, #393053, #443C68);
-    border-color: #635985;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     text-align: center;
-    margin: 20px;
-    border-radius: 10px;
-    border-width: 2px;
-    border-style: solid;
+    margin: 1vh;
 }
 
 .card {
-    background-image: linear-gradient(to right, #443C68, #393053, #443C68);
-    border-color: #635985;
-    border-radius: 10px;
-    border-width: 2px;
-    border-style: solid;
+    background-color: #4D4D4DB3;
     text-align: center;
-    margin: 20px;
+    margin: 5vh;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
+    padding-top: 10px;
     position: relative;
+    width: 50vh;
+    height: 55vh;
 }
 
 .card a::before {
@@ -47,7 +63,7 @@ html {
 }
 
 h1 {
-    font-family: 'TitleText', serif;
+    font-family: 'IBM Plex Mono', monospace;
     color: #e5ddff;
     font-size: 100px;
     margin-bottom: -5px;
@@ -62,6 +78,7 @@ h1 {
 div.flex-container {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .plan-option {
@@ -73,15 +90,18 @@ div.flex-container {
 }
 
 p {
-    font-family: 'Arial', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 200; 
     font-size: 18px;
-    color: #e5ddff
-}
+    color: white;
+} 
 
 h2 {
-    font-family: 'TitleText', serif;
-    color: #e5ddff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    color: white;
     font-size: 50px;
+    margin-top: -5px;
 }
 
 @media screen and (max-width: 600px) {
@@ -117,37 +137,38 @@ h2 {
 }
 
 .plan-container th {
-    font-family: 'TitleText', serif;
-    color: #e5ddff;
-    background-color: #393053;
+    font-family: 'IBM Plex Mono', monospace;
+    color: white;
+    background-color: #3d3d3db3;
     font-size: 30px;
     padding: 10px;
+    font-weight: 500;
 }
 
 .plan-container tr:nth-child(even) {
-    background-color: #443C68;
+    background-color: #4D4D4DB3;
 }
 
 .plan-container td {
-    font-family: 'Arial', sans-serif;
-    color: #e5ddff;
+    font-family: 'IBM Plex Mono', monospace;
+    color: white;
     font-size: 20px;
     padding: 10px;
     text-align: center;
+    font-weight: 200;
 }
 
 .plan-container button {
-    padding: 10px 20px;
+    padding: 1vh 2vh;
     font-size: 18px;
-    color: #e5ddff;
-    background-color: #635985;
-    border: none;
-    border-radius: 5px;
+    color: white;
+    background-color: black;
     cursor: pointer;
+    border: none;
 }
 
 .plan-container button:hover {
-    background-color: #7a6fb2;
+    background-color: rgb(27, 27, 27);
 }
 
 .add-container {
@@ -164,24 +185,24 @@ h2 {
 }
 
 .add-container th {
-    font-family: 'TitleText', serif;
-    color: #e5ddff;
-    background-color: #393053;
+    font-family: 'IBM Plex Mono', monospace;
+    color: white;
+    background-color: #3d3d3db3;
     font-size: 30px;
     padding: 10px;
 }
 
 .add-container tr {
-    background-color: #524577;
+    background-color: #4D4D4DB3;
 }
 
 .add-container tr:nth-child(even) {
-    background-color: #4b4272;
+    background-color: #4D4D4DB3;
 }
 
 .add-container td {
-    font-family: 'Arial', sans-serif;
-    color: #e5ddff;
+    font-family: 'IBM Plex Mono', monospace;
+    color: white;
     font-size: 20px;
     padding: 10px;
     text-align: left;
@@ -190,8 +211,8 @@ h2 {
 .add-container .add-btn {
     padding: 5px 10px;
     font-size: 16px;
-    color: #e5ddff;
-    background-color: #635985;
+    color: white;
+    background-color: #4D4D4DB3;
     border: none;
     border-radius: 5px;
     cursor: pointer;
