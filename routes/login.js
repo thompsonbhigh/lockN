@@ -1,89 +1,72 @@
 const express = require('express');
 const router = express.Router();
-const hash = require('pbkdf2-password')();
+const jwt = require('jsonwebtoken');
 const session = require('express-session');
+const bcrypt = require('bcrypt');
+const db = require('../db');
+require('dotenv').config();
 
-router.use(express.urlencoded());
-router.use(session({
-    resave: false,
-    saveUninitialized: true,
-    secret: 'fyhuv2@#&@b32ubfdf2dj393mj3k'
-}));
+const authJWT = (req, res, next) => {
+    const token = req.cookies.token;
 
-router.use(function(req, res, next){
-    var err  = req.session.error;
-    var msg  = req.session.success;
-    delete req.session.error;
-    delete req.session.success;
-    res.locals.message = '';
-    if (err) res.locals.message = '<p class="msg error">' + err + '</p>';
-    if (msg) res.locals.message = '<p class="msg success">' + msg + '</p>';
-    next();
-});
+    if (!token) {
+        return res.redirect('login');
+    }
 
-var users = {
-    thompson: {name: 'thompson'}
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        req.user = decoded;
+
+        next();
+    } catch (error) {
+        return res.redirect('login');;
+    }
 };
 
-hash({password: 'baines'}, function(err, pass, salt, hash) {
-    if (err) throw err;
-    users.thompson.salt = salt;
-    users.thompson.hash = hash;
-});
-
-function authenticate(name, pass, fn) {
-    if (!module.main) console.log('authenticating %s:%s', name, pass);
-    var user = users[name];
-    // query db for username
-    if (!user) return fn(null, null);
-    hash({password: pass, salt: user.salt}, function(err, pass, salt, hash) {
-        if (err) return fn(err);
-        if (hash == user.hash) return fn(null, user);
-        fn(null, null);
-    });
-}
-
-function restrict(req, res, next) {
-    if (req.session.user) {
-        next();
-    } else {
-        req.session.error = 'Access denied!';
-        res.redirect('/login');
-    }
-}
-
-router.get('/', function(req, res){
+router.get('/', (req, res) => {
     res.render('login');
 });
 
-router.get('/restricted', restrict, function(req, res){
-    res.send('Wahoo! restricted area, ' + req.session.user.name + '!');
+router.post('/', async (req, res) => {
+    const username = req.body.uname;
+    const password = req.body.psw;
+    let user;
+
+    try {
+        const { rows } = await db.query('SELECT * FROM users WHERE username = $1', [username]);
+        user = {
+            id: rows.at(0).id,
+            username: rows.at(0).username
+        };
+        const hashedPassword = rows.at(0).hash;
+        console.log(hashedPassword);
+        bcrypt.compare(password, hashedPassword, async function(err, result) {
+            if (!result) {
+                console.log("Incorrect Password");
+            }
+        });
+    } catch (error) {
+        console.error(error);
+    }
+
+    console.log(user);
+    if (!user) {
+        return res.redirect('/login');
+    }
+
+    const payload = {
+        id: user.id,
+        username: user.username
+    };
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: '24h'});
+    res.cookie('token', token, {httpOnly: true});
+
+    res.redirect('../');
 });
 
-router.get('/logout', function(req, res){
-    req.session.destroy(function(){
-        res.redirect('/home');
-    });
-});
-
-router.post('/', function(req, res, next){
-    if (!req.body) return res.sendStatus(400);
-    authenticate(req.body.username, req.body.password, function(err, user){
-        if (err) return next(err);
-        if (user){
-            req.session.regenerate(function(){
-                req.session.user = user;
-                req.session.success = 'Authenticated as ' + user.name
-                  + ' click to <a href="/logout">logout</a>. '
-                  + ' You may now access <a href="/login/restricted">/login/restricted</a>.';
-                res.redirect('/');
-            });
-        } else {
-            req.session.error = 'Authentication failed, please check your '
-              + ' username and password.';
-            res.redirect('/login');
-        }
-    });
-});
-
-module.exports = router;
+module.exports = {
+    login: router, 
+    auth: authJWT
+}

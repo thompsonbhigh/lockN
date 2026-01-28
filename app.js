@@ -1,11 +1,13 @@
 const express         = require('express'),
-      login           = require('./routes/login.js'),
+      { login, auth } = require('./routes/login.js'),
       plan            = require('./routes/plan.js'),
       planSelection   = require('./routes/planSelection.js'),
-      addExercise     = require('./routes/addExercise.js');
+      addExercise     = require('./routes/addExercise.js'),
+      createAccount   = require('./routes/createAccount.js');
 
 const session = require('express-session');
-
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');   
 const app = express();
 const port = 3000;
 
@@ -16,11 +18,20 @@ app.use(session({
     secret: 'baines_secret_key'
 }));
 
+app.use(session({
+    secret: 'kiosk_secret_key',
+    resave: false,
+    saveUninitialized: true,
+}));
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 app.use('/login', login);
 app.use('/plan', plan);
 app.use('/planSelection', planSelection);
 app.use('/addExercise', addExercise);
+app.use('/createAccount', createAccount);
 
 user = null;
 app.get('/', (req, res) => {
