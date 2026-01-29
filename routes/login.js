@@ -6,6 +6,8 @@ const bcrypt = require('bcrypt');
 const db = require('../db');
 require('dotenv').config();
 
+let incorrectLogin = null;
+
 const authJWT = (req, res, next) => {
     const token = req.cookies.token;
 
@@ -25,7 +27,7 @@ const authJWT = (req, res, next) => {
 };
 
 router.get('/', (req, res) => {
-    res.render('login');
+    res.render('login', {incorrectLogin: incorrectLogin});
 });
 
 router.post('/', async (req, res) => {
@@ -48,8 +50,10 @@ router.post('/', async (req, res) => {
     }
 
     if (!user) {
+        incorrectLogin = 'Username or password is incorrect'
         return res.redirect('/login');
     }
+    incorrectLogin = null;
 
     res.cookie('user', user);
     

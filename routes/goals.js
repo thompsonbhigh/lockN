@@ -23,6 +23,7 @@ router.post('/add', async (req, res) => {
 router.post('/complete', async (req, res) => {
     const goalId = req.body.goalid;
     await db.query('UPDATE goals SET status = true WHERE user_id = $1 AND id = $2', [req.cookies.user.id, goalId]);
+    await db.query('UPDATE users SET goals_completed = goals_completed + 1 WHERE id = $1', [req.cookies.user.id]);
     res.redirect('/goals');
 })
 

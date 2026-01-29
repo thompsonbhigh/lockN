@@ -19,18 +19,32 @@
         <div class="flex-container">
             <div class="card">
                 <h2>WORKOUTS</h2>
+                <div class="home-rank">
+                </div>
                 <p>Build a training plan that will help track workouts.</p>
                 <a href="/plan"></a>
             </div>
 
             <div class="card">
                 <h2>DAILY TASKS</h2>
+                <% if (user) { %>
+                    <div class="home-rank">
+                        <p>Rank</p>
+                        <%= userTaskRank %>
+                    </div>
+                <% } %>
                 <p>Make a to-do list to make sure you never forget what needs to get done.</p>
                 <a href="/tasks"></a>
             </div>
 
             <div class="card">
                 <h2>GOALS</h2>
+                <% if (user) { %>
+                    <div class="home-rank">
+                        <p>Rank</p>
+                        <%= userGoalRank %>
+                    </div>
+                <% } %>
                 <p>Track long term goals and see your progress over time.</p>
                 <a href="/goals"></a>
             </div>

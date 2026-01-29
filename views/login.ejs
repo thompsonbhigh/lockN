@@ -13,6 +13,9 @@
     <body>
         <div class="login-container">
             <h2>Login to Your Account</h2>
+            <% if (incorrectLogin) { %>
+                <p><%= incorrectLogin %></p>
+            <% } %>
             <form action="/login" method="POST">
                 <div>
                     <input type="text" size="20%" placeholder="Username" name="uname" required>

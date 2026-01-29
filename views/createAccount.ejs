@@ -13,6 +13,17 @@
     <body>
         <div class="login-container">
             <h2>Create an Account</h2>
+            <% if (usernameShort) { %>
+                <p><%= usernameShort %></p>
+            <% } else if (usernameExists) { %> 
+                <p><%= usernameExists %></p>
+            <% } %>
+
+            <% if (passwordWeak) { %>
+                <p><%= passwordWeak %></p>
+            <% } else if (passwordMismatch) { %>
+                <p><%= passwordMismatch %></p>
+            <% } %>
             <form action="/createAccount" method="POST">
                 <div>
                     <input type="text" size="20%" placeholder="Username" name="uname" required>
@@ -28,6 +39,7 @@
 
                 <button type="submit">Create Account</button>
             </form>
+            <a href="../login">Login</a>
         </div>
     </body>
 </html>

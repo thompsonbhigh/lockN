@@ -53,6 +53,18 @@ body::after {
     text-decoration: none;
 }
 
+.home-rank {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 300;
+    font-size: 10rem;
+    color: white;
+}
+
+.home-rank p {
+    font-size: 3rem;
+    margin: -3vh;
+}
+
 .card {
     background-color: #4D4D4DB3;
     text-align: center;
@@ -65,6 +77,18 @@ body::after {
     position: relative;
     width: 50vh;
     height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card a {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .card a::before {
