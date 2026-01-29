@@ -12,11 +12,6 @@ const app = express();
 const port = 3000;
 
 app.set('view engine', 'ejs');
-app.use(session({
-    resave: false,
-    saveUninitialized: true,
-    secret: 'baines_secret_key'
-}));
 
 app.use(session({
     secret: '72Ghis^%&nDjhs8@^bDj8',
@@ -35,7 +30,7 @@ app.use('/createAccount', createAccount);
 
 user = null;
 app.get('/', (req, res) => {
-  user = req.session.user;
+  user = req.cookies.user;
   console.log(user);
   res.render('home', user);
 });

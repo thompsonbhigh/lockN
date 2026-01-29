@@ -7,29 +7,35 @@
     <script src="addExercise.js" defer></script>
     <title>Add</title>
 </head>
+
+<header>
+        <%- include ('partials/header') %>
+</header>
+
 <body>
     <div class="add-container">
         <table>
             <thead>
-                <th>
+                <th colspan="3">
                     <form action="../addExercise/search" method="GET">
                         <input type="text" name="query" placeholder="Search...">
                     </form>
                 </th>
             </thead>
 
-            <tr class="blank-row">
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <% exercises.forEach(exercise => { %>
-            <tr>
-                <td><%= exercise.name %></td>
-                <td><%= exercise.muscle %></td>
-                <td><button class="add-btn" data-id="<%= exercise.id %>">+</button></td>
-            </tr>
-            <% }); %>
+            <tbody>
+                <% exercises.forEach(exercise => { %>
+                <tr>
+                    <td><%= exercise.name %></td>
+                    <td><%= exercise.muscle %></td>
+                    <td>
+                        <form action="/addExercise" method="POST">
+                            <button type="submit" class="add-btn" name="<%= exercise.id %>">+</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
+            </tbody>
         </table>
     </div>
 </body>

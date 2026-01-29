@@ -6,41 +6,199 @@
     <link rel="stylesheet" href="styles/style1.css" type="text/css">
     <title>Plan</title>
 </head>
+
+<header>
+        <%- include ('partials/header') %>
+</header>
+
 <body>
     <div class="plan-container">
         <table>
-            <tr>
-                <th>Monday</th>
-            </tr>
+            <thead>
+                <th colspan="2">Monday</th>
+            </thead>
+
+            <% workouts.forEach(workout => { %>
+                <% if (workout.day == 1) { %>
+                    <tr>
+                        <td>
+                            <%= workout.name %>
+                        </td>
+                        <td>
+                            <form action="/plan/delete" method="POST">
+                                <input type="hidden" name="workoutId" value="<%=workout.id%>">
+                                <button type="submit">−</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }) %>
 
             <tr>
-                <td><a href="/addExercise"><button>+</button></a></td>
+                <td colspan="2">
+                    <form action="/plan" method="POST">
+                        <button type="submit" name="1">+</button>
+                    </form>
+                </td>
             </tr>
         </table>
     </div>
 
     <div class="plan-container">
         <table>
-            <tr>
+            <thead>
                 <th>Tuesday</th>
-            </tr>
+            </thead>
+
+            <% workouts.forEach(workout => { %>
+                <% if (workout.day == 2) { %>
+                    <tr>
+                        <td>
+                            <%= workout.name %>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }) %>
 
             <tr>
-                <td><button>+</button></td>
+                <td>
+                    <form action="/plan" method="POST">
+                        <button type="submit" name="2">+</button>
+                    </form>
+                </td>
             </tr>
         </table>
     </div>
 
     <div class="plan-container">
         <table>
-            <tr>
+            <thead>
                 <th>Wednesday</th>
-            </tr>
+            </thead>
+
+            <% workouts.forEach(workout => { %>
+                <% if (workout.day == 3) { %>
+                    <tr>
+                        <td>
+                            <%= workout.name %>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }) %>
 
             <tr>
-                <td><button>+</button></td>
+                <td>
+                    <form action="/plan" method="POST">
+                        <button type="submit" name="3">+</button>
+                    </form>
+                </td>
             </tr>
         </table>
     </div>
+
+    <div class="plan-container">
+        <table>
+            <thead>
+                <th>Thursday</th>
+            </thead>
+
+            <% workouts.forEach(workout => { %>
+                <% if (workout.day == 4) { %>
+                    <tr>
+                        <td>
+                            <%= workout.name %>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }) %>
+
+            <tr>
+                <td>
+                    <form action="/plan" method="POST">
+                        <button type="submit" name="4">+</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="plan-container">
+        <table>
+            <thead>
+                <th>Friday</th>
+            </thead>
+
+            <% workouts.forEach(workout => { %>
+                <% if (workout.day == 5) { %>
+                    <tr>
+                        <td>
+                            <%= workout.name %>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }) %>
+
+            <tr>
+                <td>
+                    <form action="/plan" method="POST">
+                        <button type="submit" name="5">+</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="plan-container">
+        <table>
+            <thead>
+                <th>Saturday</th>
+            </thead>
+
+            <% workouts.forEach(workout => { %>
+                <% if (workout.day == 6) { %>
+                    <tr>
+                        <td>
+                            <%= workout.name %>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }) %>
+
+            <tr>
+                <td>
+                    <form action="/plan" method="POST">
+                        <button type="submit" name="6">+</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="plan-container">
+        <table>
+            <thead>
+                <th>Sunday</th>
+            </thead>
+
+            <% workouts.forEach(workout => { %>
+                <% if (workout.day == 7) { %>
+                    <tr>
+                        <td>
+                            <%= workout.name %>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }) %>
+
+            <tr>
+                <td>
+                    <form action="/plan" method="POST">
+                        <button type="submit" name="7">+</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+
 </body>
 </html>
