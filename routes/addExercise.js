@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../db');
 
 router.get('/', async function(req, res){
-    const { rows } = await db.query('SELECT * FROM exercises');
+    const { rows } = await db.query('SELECT * FROM exercises ORDER BY muscle ASC');
     const exercises = { exercises: rows };
     res.render('addExercise', exercises);
 });

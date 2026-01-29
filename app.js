@@ -5,7 +5,8 @@ const express         = require('express'),
       createAccount   = require('./routes/createAccount.js'),
       logout          = require('./routes/logout.js'),
       tasks           = require('./routes/tasks.js'),
-      goals           = require('./routes/goals.js');
+      goals           = require('./routes/goals.js'),
+      leaderboard     = require('./routes/leaderboard.js');
 
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -31,6 +32,7 @@ app.use('/createAccount', createAccount);
 app.use('/logout', logout);
 app.use('/tasks', tasks);
 app.use('/goals', goals);
+app.use('/leaderboard', leaderboard);
 
 user = null;
 app.get('/', (req, res) => {

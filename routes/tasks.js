@@ -17,6 +17,7 @@ router.post('/add', async (req, res) => {
 
 router.post('/complete', async (req, res) => {
     await db.query('UPDATE tasks SET status = true WHERE user_id = $1 AND id = $2', [req.cookies.user.id, req.body.taskid]);
+    await db.query('UPDATE users SET tasks_completed = tasks_completed + 1 WHERE id = $1', [req.cookies.user.id]);
     res.redirect('/tasks');
 });
 

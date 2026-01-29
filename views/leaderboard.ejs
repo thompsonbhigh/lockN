@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style1.css" type="text/css">
+    <title>Leaderboard</title>
+</head>
+
+<header>
+    <%- include ('partials/header') %>
+</header>
+
+<body>
+    <div class="leaderboard-flex">
+        <div class="leaderboard-container">
+            <table>
+                <thead class="theader">
+                    <th colspan="3">
+                        TASK LEADERBOARD
+                    </th>
+                </thead>
+                <thead class="subheader">
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Points</th>
+                </thead>
+                <tbody>
+                    <% taskLeaderboard.forEach(row => { %>
+                        <tr>
+                            <td><%=row.rank%></td>
+                            <td><%=row.username%></td>
+                            <td><%=row.tasks_completed%></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+        <div class="leaderboard-container">
+            <table>
+                <thead class="theader">
+                    <th colspan="3">
+                        GOAL LEADERBOARD
+                    </th>
+                </thead>
+                <thead class="subheader">
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Points</th>
+                </thead>
+                <tbody>
+                    <% goalLeaderboard.forEach(row => { %>
+                        <tr>
+                            <td><%=row.rank%></td>
+                            <td><%=row.username%></td>
+                            <td><%=row.goals_completed%></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

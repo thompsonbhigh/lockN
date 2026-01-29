@@ -34,6 +34,25 @@ body::after {
     margin: 1vh;
 }
 
+.leaderboard-path {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1vh;
+}
+
+.leaderboard-path .arrow {
+    position: relative;
+    top: 0.03em;
+    font-size: 1.5em;
+    left: 0.1em;
+}
+
+.leaderboard-path a {
+    text-decoration: none;
+}
+
 .card {
     background-color: #4D4D4DB3;
     text-align: center;
@@ -400,4 +419,83 @@ h2 {
 
 .goals-container button:hover {
     background-color: rgb(27, 27, 27);
+}
+
+.leaderboard-container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.leaderboard-container table {
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.leaderboard-container thead {
+    background-color: #3d3d3d;
+    display: table;
+    table-layout: fixed;
+    width: 60vh;
+}
+
+.leaderboard-container tbody {
+    display: block;
+    height: 50vh;
+    overflow-y: scroll;
+}
+
+.leaderboard-container tbody tr {
+    display: table;
+    table-layout: fixed;
+    width: 60vh;
+}
+
+.leaderboard-container th td {
+    width: auto;
+}
+
+.leaderboard-container tr {
+    background-color: #4D4D4DB3;
+}
+
+.leaderboard-container tr:nth-child(even) {
+    background-color: #4D4D4DB3;
+}
+
+.leaderboard-container td {
+    font-family: 'IBM Plex Mono', monospace;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    text-align: left;
+}
+
+.leaderboard-container .subheader {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.5rem;
+    color: white;
+    padding: 5em;
+    text-align: left;
+}
+
+.leaderboard-container .theader {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 3rem;
+    color: white;
+}
+
+.leaderboard-container th {
+    font-weight: normal;
+    padding-right: 1vh;
+    padding-left: 1vh;
+}
+
+.leaderboard-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 5vh;
+    justify-content: center;
 }
