@@ -1,9 +1,11 @@
 const express         = require('express'),
       { login, auth } = require('./routes/login.js'),
       plan            = require('./routes/plan.js'),
-      planSelection   = require('./routes/planSelection.js'),
       addExercise     = require('./routes/addExercise.js'),
-      createAccount   = require('./routes/createAccount.js');
+      createAccount   = require('./routes/createAccount.js'),
+      logout          = require('./routes/logout.js'),
+      tasks           = require('./routes/tasks.js'),
+      goals           = require('./routes/goals.js');
 
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -24,9 +26,11 @@ app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 app.use('/login', login);
 app.use('/plan', plan);
-app.use('/planSelection', planSelection);
 app.use('/addExercise', addExercise);
 app.use('/createAccount', createAccount);
+app.use('/logout', logout);
+app.use('/tasks', tasks);
+app.use('/goals', goals);
 
 user = null;
 app.get('/', (req, res) => {

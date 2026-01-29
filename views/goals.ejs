@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style1.css" type="text/css">
+    <title>Goals</title>
+</head>
+
+<header>
+    <%- include ('partials/header.ejs') %>
+</header>
+
+<body>
+    <div class="goals-box">
+
+        <div class="goals-container">
+            <table>
+                <thead>
+                    <th colspan="2">
+                        WEEKLY GOALS
+                    </th>
+                </thead>
+                <tbody>
+                    <% goals.forEach(goal => { %>
+                        <% if (!goal.status && goal.type == 'weekly') { %>
+                            <tr>
+                                <td><%= goal.goal %></td>
+                                <td style="text-align: right;">
+                                    <form action="/goals/complete" method="POST">
+                                        <button type="submit" name="goalid" value="<%= goal.id %>">✓</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% }); %>
+                    <tr>
+                        <td colspan="2">
+                            <form class="task-form" action="/goals/add" method="POST">
+                                <div>
+                                    <input type="text" placeholder="Enter a goal" name="goal" required>
+                                    <input type="hidden" name="goaltype" value="weekly">
+                                </div>
+                                <div>
+                                    <button type="submit">+</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <% if (!incompleteWeeklyGoals) { %>
+                <p>You've completed all your weekly goals!</p>
+            <% } %>
+        </div>
+
+        <div class="goals-container">
+            <table>
+                <thead>
+                    <th colspan="2">
+                        MONTHLY GOALS
+                    </th>
+                </thead>
+                <tbody>
+                    <% goals.forEach(goal => { %>
+                        <% if (!goal.status && goal.type == 'monthly') { %>
+                            <tr>
+                                <td><%= goal.goal %></td>
+                                <td style="text-align: right;">
+                                    <form action="/goals/complete" method="POST">
+                                        <button type="submit" name="goalid" value="<%= goal.id %>">✓</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% }); %>
+                    <tr>
+                        <td colspan="2">
+                            <form class="task-form" action="/goals/add" method="POST">
+                                <div>
+                                    <input type="text" placeholder="Enter a goal" name="goal" required>
+                                    <input type="hidden" name="goaltype" value="monthly">
+                                </div>
+                                <div>
+                                    <button type="submit">+</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <% if (!incompleteMonthlyGoals) { %>
+                <p>You've completed all your monthly goals!</p>
+            <% } %>
+        </div>
+
+        <div class="goals-container">
+            <table>
+                <thead>
+                    <th colspan="2">
+                        YEARLY GOALS
+                    </th>
+                </thead>
+                <tbody>
+                    <% goals.forEach(goal => { %>
+                        <% if (!goal.status && goal.type == 'yearly') { %>
+                            <tr>
+                                <td><%= goal.goal %></td>
+                                <td style="text-align: right;">
+                                    <form action="/goals/complete" method="POST">
+                                        <button type="submit" name="goalid" value="<%= goal.id %>">✓</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% }); %>
+                    <tr>
+                        <td colspan="2">
+                            <form class="task-form" action="/goals/add" method="POST">
+                                <div>
+                                    <input type="text" placeholder="Enter a goal" name="goal" required>
+                                    <input type="hidden" name="goaltype" value="yearly">
+                                </div>
+                                <div>
+                                    <button type="submit">+</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <% if (!incompleteYearlyGoals) { %>
+                <p>You've completed all your yearly goals!</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

@@ -12,7 +12,7 @@ html {
 body::after {
   content: "";
   background: url(../assests/images/plastic-texture.jpg);
-  opacity: 0.1;
+  opacity: 0.09;
   top: 0;
   left: 0;
   bottom: 0;
@@ -38,6 +38,7 @@ body::after {
     background-color: #4D4D4DB3;
     text-align: center;
     margin: 5vh;
+    margin-top: 0;
     align-items: center;
     justify-content: center;
     padding: 20px;
@@ -73,6 +74,7 @@ h1 {
 .login {
     font-size: 20px;
     color: white;
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 div.flex-container {
@@ -154,6 +156,28 @@ h2 {
     font-family: 'IBM Plex Mono', monospace;
 }
 
+.task-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.plan-container input {
+    background-color: #4D4D4D;
+    border: none;
+    margin: 1vh;
+    margin-left: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 2.5vh;
+    width: 93vh;
+    color: white;
+}
+
+.plan-container input:focus {
+    outline: none;
+}
+
 .plan-container {
     display: flex;
     flex-direction: column;
@@ -164,7 +188,7 @@ h2 {
 .plan-container table {
     border-collapse: collapse;
     width: 50%;
-    margin-top: 20px;
+    margin: 1vh;
 }
 
 .plan-container thead th {
@@ -301,4 +325,79 @@ h2 {
 .add-container form {
     display: flex;
     flex-direction: row;
+}
+
+.goals-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items:baseline;
+}
+
+.goals-container input {
+    background-color: #4D4D4D;
+    border: none;
+    margin: 1vh;
+    margin-left: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 2.5vh;
+    width: 55vh;
+    color: white;
+}
+
+.goals-container input:focus {
+    outline: none;
+}
+
+.goals-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.goals-container table {
+    border-collapse: collapse;
+    width: 50%;
+    margin: 1vh;
+}
+
+.goals-container thead th {
+    font-family: 'IBM Plex Mono', monospace;
+    color: white;
+    background-color: #3d3d3db3;
+    font-size: 30px;
+    padding: 10px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.goals-container tr:nth-child(even) {
+    background-color: #4D4D4DB3;
+}
+
+.goals-container tr {
+    background-color: #535353b3;
+}
+
+.goals-container td {
+    font-family: 'IBM Plex Mono', monospace;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    text-align: left;
+    font-weight: 200;
+}
+
+.goals-container button {
+    font-size: 3vh;
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+}
+
+.goals-container button:hover {
+    background-color: rgb(27, 27, 27);
 }

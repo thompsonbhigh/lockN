@@ -35,22 +35,18 @@ router.post('/', async (req, res) => {
 
     try {
         const { rows } = await db.query('SELECT * FROM users WHERE username = $1', [username]);
-        user = {
-            id: rows.at(0).id,
-            username: rows.at(0).username
-        };
         const hashedPassword = rows.at(0).hash;
-        console.log(hashedPassword);
-        bcrypt.compare(password, hashedPassword, async function(err, result) {
-            if (!result) {
-                console.log("Incorrect Password");
-            }
-        });
+        const match = await bcrypt.compare(password, hashedPassword);
+        if (match) {
+            user = {
+                id: rows.at(0).id,
+                username: rows.at(0).username
+            };
+        }
     } catch (error) {
         console.error(error);
     }
 
-    console.log(user);
     if (!user) {
         return res.redirect('/login');
     }

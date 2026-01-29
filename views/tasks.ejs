@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style1.css" type="text/css">
+    <title>Tasks</title>
+</head>
+
+<header>
+    <%- include ('partials/header.ejs') %>
+</header>
+
+<body>
+    <div class="plan-container">
+        <table>
+            <thead>
+                <th colspan="2">
+                    DAILY TASKS
+                </th>
+            </thead>
+            <tbody>
+                <% tasks.forEach(task => { %>
+                    <% if (!task.status) { %>
+                        <tr>
+                            <td><%= task.task %></td>
+                            <td style="text-align: right;">
+                                <form action="/tasks/complete" method="POST">
+                                    <button type="submit" name="taskid" value="<%= task.id %>">✓</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% } %>
+                <% }); %>
+                <tr>
+                    <td colspan="2">
+                        <form class="task-form" action="/tasks/add" method="POST">
+                            <div>
+                                <input type="text" placeholder="Enter a task" name="task" required>
+                            </div>
+                            <div>
+                                <button type="submit">+</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <% if (!incompleteTasks) { %>
+            <p>You've completed all your tasks!</p>
+        <% } %>
+    </div>
+</body>
+</html>
