@@ -21,4 +21,9 @@ router.post('/complete', async (req, res) => {
     res.redirect('/tasks');
 });
 
+router.post('/delete', async (req, res) => {
+    await db.query('DELETE FROM tasks WHERE id = $1 AND user_id = $2', [req.body.taskid, req.cookies.user.id]);
+    res.redirect('/tasks');
+})
+
 module.exports = router;
