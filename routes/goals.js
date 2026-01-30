@@ -8,10 +8,13 @@ router.get('/', auth, async (req, res) => {
     const result2 = await db.query('SELECT * FROM goals WHERE user_id = $1 AND status = false AND type = $2', [req.cookies.user.id, 'weekly']);
     const result3 = await db.query('SELECT * FROM goals WHERE user_id = $1 AND status = false AND type = $2', [req.cookies.user.id, 'monthly']);
     const result4 = await db.query('SELECT * FROM goals WHERE user_id = $1 AND status = false AND type = $2', [req.cookies.user.id, 'yearly']);
+    const emptyInfo = await db.query('SELECT * FROM goals WHERE user_id = $1', [req.cookies.user.id]);
+    const isEmpty = emptyInfo.rows.length == 0;
     const incompleteWeeklyGoals = result2.rows.length;
     const incompleteMonthlyGoals = result3.rows.length;
     const incompleteYearlyGoals = result4.rows.length;
-    res.render('goals', {goals: result.rows, incompleteWeeklyGoals: incompleteWeeklyGoals, incompleteMonthlyGoals: incompleteMonthlyGoals, incompleteYearlyGoals: incompleteYearlyGoals});
+    res.render('goals', {goals: result.rows, incompleteWeeklyGoals: incompleteWeeklyGoals, 
+        incompleteMonthlyGoals: incompleteMonthlyGoals, incompleteYearlyGoals: incompleteYearlyGoals, isEmpty: isEmpty});
 });
 
 router.post('/add', async (req, res) => {

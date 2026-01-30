@@ -55,8 +55,10 @@
                     </tr>
                 </tbody>
             </table>
-            <% if (!incompleteWeeklyGoals) { %>
-                <p>You've completed all your weekly goals!</p>
+            <% if (isEmpty) { %>
+                <p>You haven't added any goals yet!</p>
+            <% } else if (!incompleteYearlyGoals) { %>
+                <p>You've completed all your yearly goals!</p>
             <% } %>
         </div>
 
@@ -101,8 +103,10 @@
                     </tr>
                 </tbody>
             </table>
-            <% if (!incompleteMonthlyGoals) { %>
-                <p>You've completed all your monthly goals!</p>
+            <% if (isEmpty) { %>
+                <p>You haven't added any goals yet!</p>
+            <% } else if (!incompleteYearlyGoals) { %>
+                <p>You've completed all your yearly goals!</p>
             <% } %>
         </div>
 
@@ -147,7 +151,9 @@
                     </tr>
                 </tbody>
             </table>
-            <% if (!incompleteYearlyGoals) { %>
+            <% if (isEmpty) { %>
+                <p>You haven't added any goals yet!</p>
+            <% } else if (!incompleteYearlyGoals) { %>
                 <p>You've completed all your yearly goals!</p>
             <% } %>
         </div>

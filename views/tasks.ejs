@@ -52,7 +52,9 @@
                 </tr>
             </tbody>
         </table>
-        <% if (!incompleteTasks) { %>
+        <% if (isEmpty) { %>
+            <p>You haven't added any tasks!</p>
+        <% } else if (!incompleteTasks) { %>
             <p>You've completed all your tasks!</p>
         <% } %>
     </div>

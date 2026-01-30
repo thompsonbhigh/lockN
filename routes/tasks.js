@@ -7,7 +7,9 @@ router.get('/', auth, async (req, res) => {
     const result = await db.query('SELECT * FROM tasks WHERE user_id = $1', [req.cookies.user.id]);
     const result2 = await db.query('SELECT * FROM tasks WHERE user_id = $1 AND status = false', [req.cookies.user.id]);
     const incompleteTasks = result2.rows.length;
-    res.render('tasks.ejs', {tasks: result.rows, incompleteTasks: incompleteTasks});
+    const emptyInfo = await db.query('SELECT * FROM tasks WHERE user_id = $1', [req.cookies.user.id]);
+    const isEmpty = emptyInfo.rows.length == 0;
+    res.render('tasks.ejs', {tasks: result.rows, incompleteTasks: incompleteTasks, isEmpty: isEmpty});
 });
 
 router.post('/add', async (req, res) => {
