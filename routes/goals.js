@@ -8,8 +8,17 @@ router.get('/', auth, async (req, res) => {
     const result2 = await db.query('SELECT * FROM goals WHERE user_id = $1 AND status = false AND type = $2', [req.cookies.user.id, 'weekly']);
     const result3 = await db.query('SELECT * FROM goals WHERE user_id = $1 AND status = false AND type = $2', [req.cookies.user.id, 'monthly']);
     const result4 = await db.query('SELECT * FROM goals WHERE user_id = $1 AND status = false AND type = $2', [req.cookies.user.id, 'yearly']);
-    const emptyInfo = await db.query('SELECT * FROM goals WHERE user_id = $1', [req.cookies.user.id]);
-    const isEmpty = emptyInfo.rows.length == 0;
+    const emptyInfoWeekly = await db.query('SELECT * FROM goals WHERE user_id = $1 AND type = $2', [req.cookies.user.id, 'weekly']);
+    const emptyInfoMonthly = await db.query('SELECT * FROM goals WHERE user_id = $1 AND type = $2', [req.cookies.user.id, 'monthly']);
+    const emptyInfoYearly = await db.query('SELECT * FROM goals WHERE user_id = $1 AND type = $2', [req.cookies.user.id, 'yearly']);
+    const emptyWeekly = emptyInfoWeekly.rows.length == 0;
+    const emptyMonthly = emptyInfoMonthly.rows.length == 0;
+    const emptyYearly = emptyInfoYearly.rows.length == 0;
+    const isEmpty = {
+        weekly: emptyWeekly,
+        monthly: emptyMonthly,
+        yearly: emptyYearly
+    };
     const incompleteWeeklyGoals = result2.rows.length;
     const incompleteMonthlyGoals = result3.rows.length;
     const incompleteYearlyGoals = result4.rows.length;

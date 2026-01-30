@@ -25,13 +25,13 @@
                     <% goals.forEach(goal => { %>
                         <% if (!goal.status && goal.type == 'weekly') { %>
                             <tr>
-                                <td><%= goal.goal %></td>
-                                <td style="text-align: right;">
+                                <td style="text-align: center; width: 3vh;">
                                     <form action="/goals/complete" method="POST">
                                         <button type="submit" name="goalid" value="<%= goal.id %>">✓</button>
                                     </form>
                                 </td>
-                                <td>
+                                <td><%= goal.goal %></td>
+                                <td style="text-align: right; width: 3vh;">
                                     <form action="/goals/delete" method="POST">
                                         <input type="hidden" name="goalid" value="<%=goal.id%>">
                                         <button type="submit">−</button>
@@ -55,10 +55,10 @@
                     </tr>
                 </tbody>
             </table>
-            <% if (isEmpty) { %>
+            <% if (isEmpty.weekly) { %>
                 <p>You haven't added any goals yet!</p>
-            <% } else if (!incompleteYearlyGoals) { %>
-                <p>You've completed all your yearly goals!</p>
+            <% } else if (!incompleteWeeklyGoals) { %>
+                <p>You've completed all your weekly goals!</p>
             <% } %>
         </div>
 
@@ -73,13 +73,13 @@
                     <% goals.forEach(goal => { %>
                         <% if (!goal.status && goal.type == 'monthly') { %>
                             <tr>
-                                <td><%= goal.goal %></td>
-                                <td style="text-align: right;">
+                                <td style="width: 3vh;">
                                     <form action="/goals/complete" method="POST">
                                         <button type="submit" name="goalid" value="<%= goal.id %>">✓</button>
                                     </form>
                                 </td>
-                                <td>
+                                <td><%= goal.goal %></td>
+                                <td style="width: 3vh;">
                                     <form action="/goals/delete" method="POST">
                                         <input type="hidden" name="goalid" value="<%=goal.id%>">
                                         <button type="submit">−</button>
@@ -103,10 +103,10 @@
                     </tr>
                 </tbody>
             </table>
-            <% if (isEmpty) { %>
+            <% if (isEmpty.monthly) { %>
                 <p>You haven't added any goals yet!</p>
-            <% } else if (!incompleteYearlyGoals) { %>
-                <p>You've completed all your yearly goals!</p>
+            <% } else if (!incompleteMonthlyGoals) { %>
+                <p>You've completed all your monthly goals!</p>
             <% } %>
         </div>
 
@@ -121,13 +121,13 @@
                     <% goals.forEach(goal => { %>
                         <% if (!goal.status && goal.type == 'yearly') { %>
                             <tr>
-                                <td><%= goal.goal %></td>
-                                <td style="text-align: right;">
+                                <td style="text-align: right; width: 3vh;">
                                     <form action="/goals/complete" method="POST">
                                         <button type="submit" name="goalid" value="<%= goal.id %>">✓</button>
                                     </form>
                                 </td>
-                                <td>
+                                <td><%= goal.goal %></td>
+                                <td style="width: 3vh;">
                                     <form action="/goals/delete" method="POST">
                                         <input type="hidden" name="goalid" value="<%=goal.id%>">
                                         <button type="submit">−</button>
@@ -151,7 +151,7 @@
                     </tr>
                 </tbody>
             </table>
-            <% if (isEmpty) { %>
+            <% if (isEmpty.yearly) { %>
                 <p>You haven't added any goals yet!</p>
             <% } else if (!incompleteYearlyGoals) { %>
                 <p>You've completed all your yearly goals!</p>

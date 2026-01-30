@@ -23,13 +23,13 @@
                 <% tasks.forEach(task => { %>
                     <% if (!task.status) { %>
                         <tr>
-                            <td><%= task.task %></td>
-                            <td style="text-align: right;">
+                            <td style="text-align: center; width: 3vh;">
                                 <form action="/tasks/complete" method="POST">
                                     <button type="submit" name="taskid" value="<%= task.id %>">✓</button>
                                 </form>
                             </td>
-                            <td>
+                            <td><%= task.task %></td>
+                            <td style="text-align: right;">
                                 <form action="/tasks/delete" method="POST">
                                     <input type="hidden" name="taskid" value="<%=task.id%>">
                                     <button type="submit">−</button>
@@ -44,7 +44,7 @@
                             <div>
                                 <input type="text" placeholder="Enter a task" name="task" required>
                             </div>
-                            <div>
+                            <div style="text-align: right;">
                                 <button type="submit">+</button>
                             </div>
                         </form>
