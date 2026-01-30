@@ -40,7 +40,6 @@ app.get('/', async (req, res) => {
     user = req.cookies.user;
     let userTaskRank = null;
     let userGoalRank = null;
-    console.log(user);
     if (user) {
         const userTaskInfo = await db.query('SELECT rank FROM task_leaderboard WHERE username = $1', [user.username]);
         const userGoalInfo = await db.query('SELECT rank FROM goal_leaderboard WHERE username = $1', [user.username]);

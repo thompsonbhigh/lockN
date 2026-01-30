@@ -20,9 +20,6 @@ router.post('/', async (req, res) => {
     const username = req.body.uname;
     const password = req.body.psw;
     const confirmPassword = req.body.confpsw;
-    console.log("uname: " + username);
-    console.log("psw: " + password);
-    console.log("confpsw: " + confirmPassword);
 
     const usernameExistsInfo = await db.query('SELECT COUNT(*) FROM users WHERE username = $1', [username]);
     usernameExistsCount = usernameExistsInfo.rows.at(0).count;
