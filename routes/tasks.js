@@ -7,7 +7,9 @@ router.get('/', auth, async (req, res) => {
     const result = await db.query('SELECT * FROM tasks WHERE user_id = $1', [req.cookies.user.id]);
     const result2 = await db.query('SELECT * FROM tasks WHERE user_id = $1 AND status = false', [req.cookies.user.id]);
     const incompleteTasks = result2.rows.length;
-    res.render('tasks.ejs', {tasks: result.rows, incompleteTasks: incompleteTasks});
+    const emptyInfo = await db.query('SELECT * FROM tasks WHERE user_id = $1', [req.cookies.user.id]);
+    const isEmpty = emptyInfo.rows.length == 0;
+    res.render('tasks.ejs', {tasks: result.rows, incompleteTasks: incompleteTasks, isEmpty: isEmpty});
 });
 
 router.post('/add', async (req, res) => {
@@ -20,5 +22,10 @@ router.post('/complete', async (req, res) => {
     await db.query('UPDATE users SET tasks_completed = tasks_completed + 1 WHERE id = $1', [req.cookies.user.id]);
     res.redirect('/tasks');
 });
+
+router.post('/delete', async (req, res) => {
+    await db.query('DELETE FROM tasks WHERE id = $1 AND user_id = $2', [req.body.taskid, req.cookies.user.id]);
+    res.redirect('/tasks');
+})
 
 module.exports = router;

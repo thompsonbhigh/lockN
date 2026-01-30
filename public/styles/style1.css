@@ -202,7 +202,7 @@ h2 {
 .task-form {
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -494,15 +494,15 @@ h2 {
     color: white;
     font-size: 20px;
     padding: 10px;
-    text-align: left;
+    text-align: center;
 }
 
 .leaderboard-container .subheader {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 1.5rem;
     color: white;
-    padding: 5em;
-    text-align: left;
+    padding: 2em;
+    text-align: center;
 }
 
 .leaderboard-container .theader {
@@ -513,8 +513,6 @@ h2 {
 
 .leaderboard-container th {
     font-weight: normal;
-    padding-right: 1vh;
-    padding-left: 1vh;
 }
 
 .leaderboard-flex {
