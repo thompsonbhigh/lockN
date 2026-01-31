@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style1.css" type="text/css">
+    <title>Plan</title>
+</head>
+
+<header>
+        <%- include ('partials/header') %>
+</header>
+
+<body>
+    <div class="plan-container">
+        <table>
+            <thead>
+                <th colspan="2">
+                    <form action="/plan/confirm" method="POST">
+                        <input type="text" placeholder="Enter workout name" name="workoutname" required>
+                        <button class="confirm-workout" type="submit">CONFIRM</button>
+                    </form>
+                </th>
+            </thead>
+
+            <% workouts.forEach(workout => { %>
+                <% if (workout.day == day) { %>
+                    <tr>
+                        <td>
+                            <%= workout.name %>
+                        </td>
+                        <td style="text-align: right;">
+                            <form action="/plan/delete" method="POST">
+                                <input type="hidden" name="workoutId" value="<%=workout.id%>">
+                                <button type="submit">−</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
+            <% }) %>
+
+            <tr>
+                <td style="text-align: right;" colspan="2">
+                    <form action="/plan" method="POST">
+                        <button type="submit" name="day" value="<%= day %>">+</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
