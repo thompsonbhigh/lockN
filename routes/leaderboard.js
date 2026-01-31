@@ -7,7 +7,8 @@ router.get('/', async (req, res) => {
     const taskLeaderboard = taskResult.rows;
     const goalResult = await db.query('SELECT * FROM goal_leaderboard ORDER BY rank');
     const goalLeaderboard = goalResult.rows;
-    res.render('leaderboard', {taskLeaderboard: taskLeaderboard, goalLeaderboard: goalLeaderboard});
+    const username = req.cookies.user.username;
+    res.render('leaderboard', {taskLeaderboard: taskLeaderboard, goalLeaderboard: goalLeaderboard, username: username});
 });
 
 module.exports = router;

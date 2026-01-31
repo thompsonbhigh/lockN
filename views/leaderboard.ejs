@@ -27,11 +27,19 @@
                 </thead>
                 <tbody>
                     <% taskLeaderboard.forEach(row => { %>
-                        <tr>
-                            <td><%=row.rank%></td>
-                            <td><%=row.username%></td>
-                            <td><%=row.tasks_completed%></td>
-                        </tr>
+                        <% if (row.username == username) { %>
+                            <tr> 
+                                <td style="color: gold;"><%=row.rank%></td>
+                                <td style="color: gold;"><%=row.username%></td>
+                                <td style="color: gold;"><%=row.tasks_completed%></td>
+                            </tr>
+                        <% } else { %>
+                            <tr>
+                                <td><%=row.rank%></td>
+                                <td><%=row.username%></td>
+                                <td><%=row.tasks_completed%></td>
+                            </tr>
+                        <% } %>
                     <% }); %>
                 </tbody>
             </table>
