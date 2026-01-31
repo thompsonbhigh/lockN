@@ -386,13 +386,13 @@ h2 {
 .confirm-workout {
     top: 0;
     right: 0;
-    position: absolute;
     margin: 3%;
+    position: absolute;
     background-color: transparent;
     font-family: 'IBM Plex Mono', monospace;
     border: none;
     color: white;
-    font-size: 5vh;
+    font-size: 5vh !important;
 }
 
 .add-workout-btn:hover {
@@ -549,4 +549,85 @@ h2 {
     flex-direction: row;
     gap: 5vh;
     justify-content: center;
+}
+
+.edit-container input {
+    background-color: #4D4D4D;
+    border: none;
+    margin: 1vh;
+    margin-left: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 2.5vh;
+    width: 93vh;
+    color: white;
+}
+
+.edit-container input:focus {
+    outline: none;
+}
+
+.edit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-container table {
+    border-collapse: collapse;
+    width: 50%;
+    margin: 1vh;
+}
+
+.edit-container thead th {
+    font-family: 'IBM Plex Mono', monospace;
+    color: white;
+    background-color: #3d3d3db3;
+    font-size: 30px;
+    padding: 10px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.edit-container tr:nth-child(even) {
+    background-color: #4D4D4DB3;
+}
+
+.edit-container tr {
+    background-color: #535353b3;
+}
+
+.edit-container td {
+    font-family: 'IBM Plex Mono', monospace;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    text-align: left;
+    font-weight: 200;
+}
+
+.edit-container button {
+    font-size: 3vh;
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+}
+
+.edit-container button:hover {
+    background-color: rgb(27, 27, 27);
+}
+
+.cancel-btn {
+    top: 0;
+    left: 0;
+    margin: 3%;
+    position: absolute;
+    text-decoration: none;
+    background-color: transparent;
+    font-family: 'IBM Plex Mono', monospace;
+    border: none;
+    color: white;
+    font-size: 5vh !important;
 }

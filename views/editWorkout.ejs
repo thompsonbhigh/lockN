@@ -12,12 +12,15 @@
 </header>
 
 <body>
-    <div class="plan-container">
+    <div class="edit-container">
+        <form action="/plan/cancel" method="POST">
+            <button class="cancel-btn" type="submit">CANCEL</button>
+        </form>
         <table>
             <thead>
                 <th colspan="2">
                     <form action="/plan/confirm" method="POST">
-                        <input type="text" placeholder="Enter workout name" name="workoutname" required>
+                        <input type="text" placeholder="Enter workout name" name="workoutname" value="<%= workouts.at(0)?.workout_name %>" required>
                         <button class="confirm-workout" type="submit">CONFIRM</button>
                     </form>
                 </th>

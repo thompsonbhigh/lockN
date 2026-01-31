@@ -16,8 +16,6 @@ router.get('/', auth, async function(req, res){
     const {rows} = await db.query('SELECT exercises.name AS exercise_name, workouts.id, workouts.day, workouts.name FROM workouts JOIN exercises ON workouts.exercise_id = exercises.id WHERE user_id = $1 ORDER BY index ASC',
          [req.cookies.user.id]);
     workouts = rows;
-    console.log(workouts);
-    console.log(workoutNames);
     res.render('plan', {workouts: workouts, workoutNames: workoutNames});
 });
 
@@ -33,14 +31,25 @@ router.post('/', (req, res) => {
 
 router.post('/delete', async (req,res) => {
     const { workoutId } = req.body;
-    const deletedIndexInfo = await db.query('DELETE FROM workouts WHERE id = $1 RETURNING index', [workoutId]);
+    const deletedIndexInfo = await db.query('DELETE FROM workouts WHERE id = $1 AND user_id = $2 RETURNING index, day', [workoutId, req.cookies.user.id]);
     const deletedIndex = deletedIndexInfo.rows.at(0).index;
-    await db.query('UPDATE workouts SET index = index - 1 WHERE user_id = $1 AND index > $2', [req.cookies.user.id, deletedIndex]);
+    await db.query('UPDATE workouts SET index = index - 1 WHERE user_id = $1 AND index > $2 AND day = $3', [req.cookies.user.id, deletedIndex, deletedIndexInfo.rows.at(0).day]);
     res.redirect('/plan/edit');
 });
 
 router.get('/edit', async (req, res) => {
-    if (!isEditing) {
+    const newWorkoutsInfo = await db.query(
+        'SELECT exercises.name, workouts.day, workouts.id, workouts.name AS workout_name FROM workouts JOIN exercises ON workouts.exercise_id = exercises.id WHERE user_id = $1 AND day = $2 ORDER BY index ASC',
+         [req.cookies.user.id, currDay]);
+    const newWorkouts = newWorkoutsInfo.rows;
+    res.render('editWorkout', {workouts: newWorkouts, day: currDay});
+});
+
+router.post('/edit', async (req, res) => {
+    const editDay = req.body?.editday;
+    if (editDay) {
+        currDay = editDay;
+    } else if (!isEditing) {
         const dayInfo = await db.query('SELECT day FROM workouts WHERE user_id = $1 ORDER BY day DESC LIMIT 1', [req.cookies.user.id]);
         currDay = dayInfo.rows.at(0)?.day;
         if (currDay == undefined) {
@@ -52,7 +61,7 @@ router.get('/edit', async (req, res) => {
     console.log(currDay);
     isEditing = true;
     const newWorkoutsInfo = await db.query(
-        'SELECT exercises.name, workouts.day, workouts.id FROM workouts JOIN exercises ON workouts.exercise_id = exercises.id WHERE user_id = $1 AND day = $2 ORDER BY index ASC',
+        'SELECT exercises.name, workouts.day, workouts.id, workouts.name AS workout_name FROM workouts JOIN exercises ON workouts.exercise_id = exercises.id WHERE user_id = $1 AND day = $2 ORDER BY index ASC',
          [req.cookies.user.id, currDay]);
     const newWorkouts = newWorkoutsInfo.rows;
     res.render('editWorkout', {workouts: newWorkouts, day: currDay});
@@ -62,6 +71,11 @@ router.post('/confirm', async (req, res) => {
     isEditing = false;
     const name = req.body.workoutname;
     await db.query('UPDATE workouts SET name = $1 WHERE user_id = $2 AND day = $3', [name, req.cookies.user.id, currDay]);
+    res.redirect('/plan');
+});
+
+router.post('/cancel', async (req, res) => {
+    await db.query('DELETE FROM workouts WHERE name IS NULL AND user_id = $1', [req.cookies.user.id]);
     res.redirect('/plan');
 });
 

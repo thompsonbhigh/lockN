@@ -12,7 +12,7 @@
 </header>
 
 <body>
-    <form action="/plan/edit" method="GET">
+    <form action="/plan/edit" method="POST">
         <button class="add-workout-btn">+ADD WORKOUT</button>
     </form>
     <div class="plan-container">
@@ -22,7 +22,9 @@
                 <thead>
                     <th colspan="1">
                         <%= name.name %>
-                        <button style="float: right; margin-left: -50%;">&#9998</button> 
+                        <form style="float: right; margin-left: -50%;" action="/plan/edit" method="POST">
+                            <button type="submit" name="editday" value="<%= name.day %>">&#9998</button> 
+                        </form>
                     </th>
                 </thead>
                 <tbody>
