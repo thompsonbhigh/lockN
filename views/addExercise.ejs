@@ -26,8 +26,8 @@
             <tbody>
                 <% exercises.forEach(exercise => { %>
                 <tr>
-                    <td><%= exercise.name %></td>
-                    <td><%= exercise.muscle %></td>
+                    <td style="width: 65%;"><%= exercise.name %></td>
+                    <td class="hide-on-mobile"><%= exercise.muscle %></td>
                     <td>
                         <form action="/addExercise" method="POST">
                             <button type="submit" class="add-btn" name="<%= exercise.id %>">+</button>

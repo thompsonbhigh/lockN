@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+const { auth } = require('./login.js');
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     const taskResult = await db.query('SELECT * FROM task_leaderboard ORDER BY rank');
     const taskLeaderboard = taskResult.rows;
     const goalResult = await db.query('SELECT * FROM goal_leaderboard ORDER BY rank');

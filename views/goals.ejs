@@ -25,13 +25,13 @@
                     <% goals.forEach(goal => { %>
                         <% if (!goal.status && goal.type == 'weekly') { %>
                             <tr>
-                                <td style="text-align: center; width: 3vh;">
+                                <td style="width: 3vh;">
                                     <form action="/goals/complete" method="POST">
                                         <button type="submit" name="goalid" value="<%= goal.id %>">✓</button>
                                     </form>
                                 </td>
                                 <td><%= goal.goal %></td>
-                                <td style="text-align: right; width: 3vh;">
+                                <td style="width: 3vh;">
                                     <form action="/goals/delete" method="POST">
                                         <input type="hidden" name="goalid" value="<%=goal.id%>">
                                         <button type="submit">−</button>

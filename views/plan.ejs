@@ -12,9 +12,6 @@
 </header>
 
 <body>
-    <form action="/plan/edit" method="POST">
-        <button class="add-workout-btn">+ADD WORKOUT</button>
-    </form>
     <div class="plan-container">
         <% workoutNames.forEach(name => { %>
             <% if (name.name != null) { %>
@@ -41,6 +38,9 @@
             </table>
             <% } %>
         <% }) %>
+        <form action="/plan/edit" method="POST">
+            <button class="add-workout-btn">+ADD WORKOUT</button>
+        </form>
     </div>
 </body>
 </html>

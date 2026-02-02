@@ -79,4 +79,9 @@ router.post('/cancel', async (req, res) => {
     res.redirect('/plan');
 });
 
+router.post('/clear', async (req, res) => {
+    await db.query('DELETE FROM workouts WHERE user_id = $1 AND day = $2', [req.cookies.user.id, req.body.clearday]);
+    res.redirect('/plan/edit');
+});
+
 module.exports = router;
