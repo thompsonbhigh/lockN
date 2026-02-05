@@ -333,6 +333,10 @@ h2 {
     .plan-container input {
         width: 100% !important
     }
+    div.path-flex {
+        flex-direction: column;
+        gap: 1em;
+    }
 }
 
 .add-container th td {
@@ -648,4 +652,11 @@ input:focus {
     display: flex;
     flex: row;
     justify-content: space-between;
+}
+
+.path-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5em;
 }

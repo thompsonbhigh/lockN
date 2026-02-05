@@ -7,7 +7,8 @@ const express         = require('express'),
       tasks           = require('./routes/tasks.js'),
       goals           = require('./routes/goals.js'),
       leaderboard     = require('./routes/leaderboard.js'),
-      db              = require('./db.js');
+      db              = require('./db.js'),
+      groups          = require('./routes/groups.js');
 
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -34,6 +35,7 @@ app.use('/logout', logout);
 app.use('/tasks', tasks);
 app.use('/goals', goals);
 app.use('/leaderboard', leaderboard);
+app.use('/groups', groups);
 
 user = null;
 app.get('/', async (req, res) => {
