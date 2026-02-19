@@ -70,7 +70,6 @@ body::after {
 
 .home-card {
     text-align: center;
-    margin: min(5%, 5vh);
     width: 30%;
     display: flex;
     justify-content: flex-start;
@@ -128,6 +127,7 @@ body::after {
     font-style: italic;
     text-align: center;
     color: #F8F9FA;
+    margin-bottom: 20px;
 }
 
 .home-card a {
@@ -190,14 +190,6 @@ body::after {
     transition: transform 0.4s;
 }
 
-h1 {
-    font-family: 'IBM Plex Mono', monospace;
-    color: #e5ddff;
-    font-size: 100px;
-    margin-bottom: -5px;
-    margin-top: -5px;
-}
-
 .login {
     font-size: 24px;
     color: #E9ECEF;
@@ -211,27 +203,45 @@ div.flex-container {
     justify-content: center;
 }
 
+.fitness-name {
+    font-size: 64px;
+    color: #F8F9FA;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    margin: 10px;
+    margin-top: -20px;
+    margin-bottom: -5px
+}
+
+.page-grid {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.page-grid p {
+    margin-top: 0px    ;
+}
+
+.page-grid div {
+    border-style: solid;
+    border-color: #F8F9FA;
+    background-color: black;
+    border-width: 2px;
+    margin: 5px;
+    margin-top: 0;
+    color: #DEE2E6;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: 100;
+    text-align: center;
+}
+
 .plan-option {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     min-height: 95vh;
-}
-
-p {
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 200; 
-    font-size: 18px;
-    color: white;
-} 
-
-h2 {
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 500;
-    color: white;
-    font-size: 50px;
-    margin-top: -5px;
 }
 
 @media screen and (max-width: 600px) {

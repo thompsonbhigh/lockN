@@ -12,7 +12,18 @@
 </header>
 
 <body>
-    <div class="plan-container">
+    <h1 class="fitness-name">fitness</h1>
+    <div class="page-grid">
+        <div>
+            <p>rank: 14</p>
+            <p>workouts completed: 124</p>
+            <canvas id="myChart"></canvas>
+        </div>
+        <div>
+            test2
+        </div>
+    </div>
+    <!-- <div class="plan-container">
         <% workoutNames.forEach(name => { %>
             <% if (name.name != null) { %>
             <table>
@@ -41,6 +52,31 @@
         <form action="/plan/edit" method="POST">
             <button class="add-workout-btn">+ADD WORKOUT</button>
         </form>
-    </div>
+    </div> -->
 </body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 3,
+        }]
+        },
+        options: {
+            layout: {
+                padding: {
+                    left: 80,
+                    right: 80
+                }
+            }
+        }
+    });
+    </script>
 </html>
