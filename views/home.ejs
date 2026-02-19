@@ -11,48 +11,41 @@
             <img class="logo" src="../../assests/images/lockNWhite-01.png">
             <br>
             <% if (user) { %>
-                <a href="/logout" class="login">Logout</a>
+                <a href="/logout" class="login">logout</a>
             <% } else { %>
-                <a href="/login" class="login">Login</a>
+                <a href="/login" class="login">login</a>
             <% } %>
         </div>
+        <h1 class="home-name">LOCKN</h1>
         <div class="flex-container">
             <div class="home-card">
-                <h2>Fitness</h2>
-                <div class="home-rank">
-                </div>
+                <h2>fitness</h2>
                 <a href="/plan"></a>
             </div>
 
             <div class="home-card">
-                <h2>Tasks</h2>
+                <h2>tasks</h2>
                 <% if (user) { %>
-                    <p>Rank: <span class="home-num"><%= userTaskRank %></span></p>
-                    <p>Remaining Tasks: <span class="home-num">14</span></p>
-                    <p>Tasks Completed: <span class="home-num">124</span></p>
-                    <a href="/tasks"><button><span class="home-btn-text">Tasks </span><span class="btn-arrow">&#x2192</span></button></a>
+                    <p>rank: <span><%= userTaskRank %></span></p>
                 <% } %>
                 <a href="/tasks"></a>
             </div>
 
             <div class="home-card">
-                <h2>Goals</h2>
+                <h2>goals</h2>
                 <% if (user) { %>
-                    <div class="home-rank">
-                        <p>Rank</p>
-                        <%= userGoalRank %>
-                    </div>
+                    <p>rank: <span><%= userGoalRank  %></span></p>
                 <% } %>
                 <a href="/goals"></a>
             </div>
         </div>
-        <div class="path-flex">
+        <!-- <div class="path-flex">
             <div class="leaderboard-path">
                 <a href="/groups"><h2>GROUPS<span class="arrow">&#x2192</span></h2></a>
             </div>
             <div class="leaderboard-path">
                 <a href="/leaderboard"><h2>LEADERBOARD<span class="arrow">&#x2192</span></h2></a>
             </div>
-        </div>
+        </div> -->
     </body>
 </html>
