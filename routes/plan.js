@@ -16,6 +16,11 @@ router.get('/', auth, async function(req, res){
     const {rows} = await db.query('SELECT exercises.name AS exercise_name, workouts.id, workouts.day, workouts.name FROM workouts JOIN exercises ON workouts.exercise_id = exercises.id WHERE user_id = $1 ORDER BY index ASC',
          [req.cookies.user.id]);
     workouts = rows;
+    const getCurrentInfo = await db.query('SELECT current FROM workouts WHERE user_id = $1 AND current = TRUE', [req.cookies.user.id]);
+    const currentInfo = getCurrentInfo.rows.at(0);
+    if (!currentInfo) {
+        await db.query('UPDATE workouts SET current = TRUE WHERE user_id = $1 AND day = 0', [req.cookies.user.id]);
+    }
     res.render('plan', {workouts: workouts, workoutNames: workoutNames});
 });
 
@@ -70,7 +75,8 @@ router.post('/edit', async (req, res) => {
 router.post('/confirm', async (req, res) => {
     isEditing = false;
     const name = req.body.workoutname;
-    await db.query('UPDATE workouts SET name = $1 WHERE user_id = $2 AND day = $3', [name, req.cookies.user.id, currDay]);
+    await db.query('UPDATE workouts SET current = FALSE WHERE user_id = $1', [req.cookies.user.id]);
+    await db.query('UPDATE workouts SET name = $1, current = TRUE WHERE user_id = $2 AND day = $3', [name, req.cookies.user.id, currDay]);
     res.redirect('/plan');
 });
 
