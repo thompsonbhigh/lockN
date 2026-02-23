@@ -110,7 +110,7 @@ body::after {
     width: 50%;
     margin: 10px;
     font-size: 36px;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 200;
     cursor: pointer;
     transition: 0.2s;
@@ -273,7 +273,7 @@ div.flex-container {
     background-color: #4D4D4D;
     border: none;
     margin-bottom: 2vh;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 3vh;
     width: 99%;
 }
@@ -291,7 +291,7 @@ div.flex-container {
 
 .login-container a {
     color: white;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .task-form {
@@ -306,7 +306,7 @@ div.flex-container {
     border: none;
     margin: 1vh;
     margin-left: 0;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 2.5vh;
     width: 70vh;
     color: white;
@@ -320,36 +320,29 @@ div.flex-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    position: relative;
+}
+
+.plan-container button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
 }
 
 .plan-container table {
     border-collapse: collapse;
-    width: min(50vh, 90%);
-    margin: 1vh;
+    width: 100%;
 }
 
 .plan-container thead th {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     color: white;
-    background-color: #3d3d3db3;
-    font-size: 30px;
+    font-size: 64px;
     padding: 10px;
-    font-weight: 500;
+    font-weight: 200;
     text-align: center;
 }
 
-.plan-container tr:nth-child(even) {
-    background-color: #4D4D4DB3;
-}
-
-.plan-container tr {
-    background-color: #535353b3;
-}
-
 .plan-container td {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     font-size: 20px;
     padding: 10px;
@@ -389,7 +382,7 @@ div.flex-container {
 }
 
 .add-container thead {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     background-color: #3d3d3d;
     font-size: 30px;
@@ -446,7 +439,7 @@ div.flex-container {
 }
 
 .add-container td {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     font-size: 20px;
     padding: 10px;
@@ -467,7 +460,7 @@ div.flex-container {
     background-color: #4D4D4D;
     border: none;
     margin: 1vh;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 3vh;
     width: 100%;
     height: 5vh;
@@ -491,7 +484,7 @@ div.flex-container {
 
 .add-workout-btn {
     background-color: transparent;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     border: none;
     color: white;
     font-size: 3rem !important;
@@ -502,7 +495,7 @@ div.flex-container {
     margin: 2vh;
     background-color: transparent;
     bottom: 0;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     border: none;
     color: white;
     font-size: 5vh !important;
@@ -525,7 +518,7 @@ div.flex-container {
     border: none;
     margin: 1vh;
     margin-left: 0;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 2.5vh;
     width: 55vh;  
     color: white;
@@ -549,7 +542,7 @@ input:focus {
 }
 
 .goals-container thead th {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     background-color: #3d3d3db3;
     font-size: 30px;
@@ -567,7 +560,7 @@ input:focus {
 }
 
 .goals-container td {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     font-size: 20px;
     padding: 10px;
@@ -630,7 +623,7 @@ input:focus {
 }
 
 .leaderboard-container td {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     font-size: 20px;
     padding: 10px;
@@ -638,14 +631,14 @@ input:focus {
 }
 
 .leaderboard-container .subheader {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: clamp(0.5rem, 4vw, 1.5rem);
     color: white;
     text-align: center;
 }
 
 .leaderboard-container .theader {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: max(2rem, 4vh);
     color: white;
 }
@@ -664,7 +657,7 @@ input:focus {
 .edit-container input {
     background-color: #4D4D4D;
     border: none;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 2.5vh;
     margin: 1vh;
     width: 95%;
@@ -691,7 +684,7 @@ input:focus {
 }
 
 .edit-container thead th {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     background-color: #3d3d3db3;
     font-size: 30px;
@@ -709,7 +702,7 @@ input:focus {
 }
 
 .edit-container td {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     font-size: 20px;
     padding: 10px;
@@ -724,7 +717,7 @@ input:focus {
     cursor: pointer;
     border: none;
     text-align: center;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .edit-container button:hover {
@@ -735,7 +728,7 @@ input:focus {
     margin: 2vh;
     text-decoration: none;
     background-color: transparent;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     border: none;
     color: white;
     font-size: 5vh !important;

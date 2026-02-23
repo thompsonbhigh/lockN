@@ -11,16 +11,17 @@ router.get('/', auth, async function(req, res){
     workouts = [];
     isEditing = false;
 
-    const workoutNamesInfo = await db.query('SELECT DISTINCT name, day FROM workouts WHERE user_id = $1 ORDER BY day ASC', [req.cookies.user.id]);
-    const workoutNames = workoutNamesInfo.rows;
-    const {rows} = await db.query('SELECT exercises.name AS exercise_name, workouts.id, workouts.day, workouts.name FROM workouts JOIN exercises ON workouts.exercise_id = exercises.id WHERE user_id = $1 ORDER BY index ASC',
-         [req.cookies.user.id]);
-    workouts = rows;
     const getCurrentInfo = await db.query('SELECT current FROM workouts WHERE user_id = $1 AND current = TRUE', [req.cookies.user.id]);
     const currentInfo = getCurrentInfo.rows.at(0);
     if (!currentInfo) {
         await db.query('UPDATE workouts SET current = TRUE WHERE user_id = $1 AND day = 0', [req.cookies.user.id]);
     }
+    const workoutNamesInfo = await db.query('SELECT DISTINCT name, day FROM workouts WHERE user_id = $1 AND current = TRUE ORDER BY day ASC', [req.cookies.user.id]);
+    const workoutNames = workoutNamesInfo.rows.at(0);
+    const {rows} = await db.query('SELECT exercises.name AS exercise_name, workouts.id, workouts.day, workouts.name FROM workouts JOIN exercises ON workouts.exercise_id = exercises.id WHERE user_id = $1 ORDER BY index ASC',
+         [req.cookies.user.id]);
+    workouts = rows;
+    console.log(workoutNames);
     res.render('plan', {workouts: workouts, workoutNames: workoutNames});
 });
 

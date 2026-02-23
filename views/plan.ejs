@@ -19,40 +19,35 @@
             <p>workouts completed: 124</p>
             <canvas id="myChart"></canvas>
         </div>
-        <div>
-            
-        </div>
-    </div>
-    <!-- <div class="plan-container">
-        <% workoutNames.forEach(name => { %>
-            <% if (name.name != null) { %>
+        <div class="plan-container">
             <table>
                 <thead>
-                    <th colspan="1">
-                        <%= name.name %>
-                        <form style="float: right; margin-left: -50%;" action="/plan/edit" method="POST">
-                            <button type="submit" name="editday" value="<%= name.day %>">&#9998</button> 
-                        </form>
+                    <th colspan="3">
+                        <%= workoutNames.name %>
                     </th>
+                </thead>
+                <thead>
+                    <th style="text-align: left; font-size: 40px;">exercise</th>
+                    <th style="text-align: left; font-size: 40px;">sets</th>
+                    <th style="text-align: left; font-size: 40px;">reps</th>
                 </thead>
                 <tbody>
                     <% workouts.forEach(workout => { %>
-                        <% if (workout.name == name.name && workout.name != null) { %>
+                        <% if (workout.name == workoutNames.name && workout.name != null) { %>
                             <tr>
-                                <td colspan="3">
+                                <td>
                                     <%= workout.exercise_name %>
                                 </td>
                             </tr>
                         <% } %>
-                    <% }) %>
+                    <% }); %>
                 </tbody>
             </table>
-            <% } %>
-        <% }) %>
-        <form action="/plan/edit" method="POST">
-            <button class="add-workout-btn">+ADD WORKOUT</button>
-        </form>
-    </div> -->
+            <form action="/finish" method="POST">
+                <button type="submit" value="<%=workoutNames.day%>" name="workoutday">finish workout</button>
+            </form>
+        </div>
+    </div>
 </body>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
