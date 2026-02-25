@@ -46,6 +46,20 @@
             <form action="/finish" method="POST">
                 <button type="submit" value="<%=workoutNames.day%>" name="workoutday">finish workout</button>
             </form>
+            <div class="fitness-btns">
+                <form action="/plan/back" method="POST">
+                    <button type="submit" name="currentday" value="<%= workoutNames.day %>">back</button>
+                </form>
+                <form action="/plan/edit" method="POST">
+                    <button type="submit" name="editday" value="<%= workoutNames.day %>">edit</button>
+                </form>
+                <form action="/plan/edit" method="POST">
+                    <button type="submit">add</button>
+                </form>
+                <form action="/plan/next" method="POST">
+                    <button type="submit" name="currentday" value="<%= workoutNames.day %>">next</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>

@@ -320,6 +320,7 @@ div.flex-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 .plan-container button {
@@ -361,6 +362,14 @@ div.flex-container {
 
 .plan-container button:hover {
     background-color: rgb(27, 27, 27);
+}
+
+.fitness-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    border: none !important;
 }
 
 .add-container {

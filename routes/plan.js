@@ -21,7 +21,6 @@ router.get('/', auth, async function(req, res){
     const {rows} = await db.query('SELECT exercises.name AS exercise_name, workouts.id, workouts.day, workouts.name FROM workouts JOIN exercises ON workouts.exercise_id = exercises.id WHERE user_id = $1 ORDER BY index ASC',
          [req.cookies.user.id]);
     workouts = rows;
-    console.log(workoutNames);
     res.render('plan', {workouts: workouts, workoutNames: workoutNames});
 });
 
@@ -64,7 +63,6 @@ router.post('/edit', async (req, res) => {
             currDay += 1;
         }
     }
-    console.log(currDay);
     isEditing = true;
     const newWorkoutsInfo = await db.query(
         'SELECT exercises.name, workouts.day, workouts.id, workouts.name AS workout_name FROM workouts JOIN exercises ON workouts.exercise_id = exercises.id WHERE user_id = $1 AND day = $2 ORDER BY index ASC',
@@ -89,6 +87,31 @@ router.post('/cancel', async (req, res) => {
 router.post('/clear', async (req, res) => {
     await db.query('DELETE FROM workouts WHERE user_id = $1 AND day = $2', [req.cookies.user.id, req.body.clearday]);
     res.redirect('/plan/edit');
+});
+
+router.post('/back', async (req, res) => {
+    const currentDay = req.body.currentday;
+    await db.query('UPDATE workouts SET current = FALSE WHERE user_id = $1', [req.cookies.user.id]);
+    if (currentDay == 0) {
+        await db.query('UPDATE workouts SET current = TRUE WHERE day = (SELECT MAX(day) FROM workouts where user_id = $1) AND user_id = $1', [req.cookies.user.id]);
+    } else {
+        await db.query('UPDATE workouts SET current = TRUE WHERE user_id = $1 AND day = $2', [req.cookies.user.id, currentDay - 1]);
+    }
+    res.redirect('/plan');
+});
+
+router.post('/next', async (req, res) => {
+    const currentDay = req.body.currentday;
+    const lastDayInfo = await db.query('SELECT MAX(day) FROM workouts WHERE user_id = $1', [req.cookies.user.id]);
+    const lastDay = lastDayInfo.rows.at(0).max;
+    console.log(lastDay, currentDay);
+    await db.query('UPDATE workouts SET current = FALSE WHERE user_id = $1', [req.cookies.user.id]);
+    if (currentDay == lastDay) {
+        await db.query('UPDATE workouts SET current = TRUE WHERE day = 0 AND user_id = $1', [req.cookies.user.id]);
+    } else {
+        const dbInfo = await db.query('UPDATE workouts SET current = TRUE WHERE user_id = $1 AND day = $2', [req.cookies.user.id, Number(currentDay) + 1]);
+    }
+    res.redirect('/plan');
 });
 
 module.exports = router;
