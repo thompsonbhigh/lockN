@@ -42,13 +42,16 @@ app.get('/', async (req, res) => {
     user = req.cookies.user;
     let userTaskRank = null;
     let userGoalRank = null;
+    let userWorkoutRank = null;
     if (user) {
+        const userWorkoutInfo = await db.query('SELECT rank from workout_leaderboard WHERE username = $1', [user.username]);
         const userTaskInfo = await db.query('SELECT rank FROM task_leaderboard WHERE username = $1', [user.username]);
         const userGoalInfo = await db.query('SELECT rank FROM goal_leaderboard WHERE username = $1', [user.username]);
+        userWorkoutRank = userWorkoutInfo.rows.at(0).rank;
         userTaskRank = userTaskInfo.rows.at(0).rank;
         userGoalRank = userGoalInfo.rows.at(0).rank;
     }
-    res.render('home', {user: user, userTaskRank: userTaskRank, userGoalRank: userGoalRank});
+    res.render('home', {user: user, userTaskRank: userTaskRank, userGoalRank: userGoalRank, userWorkoutRank: userWorkoutRank});
 });
 
 app.listen(port, () => {

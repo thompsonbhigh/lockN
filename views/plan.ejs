@@ -15,8 +15,8 @@
     <h1 class="fitness-name">fitness</h1>
     <div class="page-grid">
         <div>
-            <p>rank: 14</p>
-            <p>workouts completed: 124</p>
+            <p>rank: <span><%= userWorkoutRank %></span></p>
+            <p>workouts completed: <span><%= userWorkoutsCompleted %></span></p>
             <canvas id="myChart"></canvas>
         </div>
         <div class="plan-container">
@@ -43,9 +43,13 @@
                     <% }); %>
                 </tbody>
             </table>
-            <form action="/finish" method="POST">
-                <button type="submit" value="<%=workoutNames.day%>" name="workoutday">finish workout</button>
-            </form>
+            <% if (hasWorkedOutToday) { %>
+                <p>Good job on working out today!</p>
+            <% } else {%>
+                <form action="/plan/finish" method="POST">
+                    <button type="submit" value="<%=workoutNames.day%>" name="workoutday">finish workout</button>
+                </form>
+            <% } %>
             <div class="fitness-btns">
                 <form action="/plan/back" method="POST">
                     <button type="submit" name="currentday" value="<%= workoutNames.day %>">back</button>

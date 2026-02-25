@@ -10,7 +10,14 @@ let currDay;
 router.get('/', auth, async function(req, res){
     workouts = [];
     isEditing = false;
-
+    const userWorkoutInfo = await db.query('SELECT rank, workouts_completed from workout_leaderboard WHERE username = $1', [req.cookies.user.username]);
+    const userWorkoutRank = userWorkoutInfo.rows.at(0).rank;
+    const userWorkoutsCompleted = userWorkoutInfo.rows.at(0).workouts_completed;
+    const currDate = new Date();
+    const today = currDate.toISOString().slice(0, 10);
+    const workedOutInfo = await db.query('SELECT last_workout_date FROM users WHERE id = $1', [req.cookies.user.id]);
+    const lastWorkoutDate = workedOutInfo.rows.at(0).last_workout_date;
+    const hasWorkedOutToday = lastWorkoutDate.toISOString().slice(0, 10) === today;
     const getCurrentInfo = await db.query('SELECT current FROM workouts WHERE user_id = $1 AND current = TRUE', [req.cookies.user.id]);
     const currentInfo = getCurrentInfo.rows.at(0);
     if (!currentInfo) {
@@ -21,7 +28,7 @@ router.get('/', auth, async function(req, res){
     const {rows} = await db.query('SELECT exercises.name AS exercise_name, workouts.id, workouts.day, workouts.name FROM workouts JOIN exercises ON workouts.exercise_id = exercises.id WHERE user_id = $1 ORDER BY index ASC',
          [req.cookies.user.id]);
     workouts = rows;
-    res.render('plan', {workouts: workouts, workoutNames: workoutNames});
+    res.render('plan', {workouts: workouts, workoutNames: workoutNames, hasWorkedOutToday: hasWorkedOutToday, userWorkoutRank: userWorkoutRank, userWorkoutsCompleted: userWorkoutsCompleted});
 });
 
 router.get('/custom', function(req, res){
@@ -113,5 +120,13 @@ router.post('/next', async (req, res) => {
     }
     res.redirect('/plan');
 });
+
+router.post('/finish', async (req, res) => {
+    const currentDate = new Date();
+    const today = currentDate.toISOString().slice(0, 10);
+    await db.query('UPDATE users SET last_workout_date = $1 WHERE id = $2', [today, req.cookies.user.id]);
+    await db.query('UPDATE users SET workouts_completed = workouts_completed + 1 WHERE id = $1', [req.cookies.user.id]);
+    res.redirect('/plan');
+})
 
 module.exports = router;
