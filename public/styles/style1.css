@@ -222,7 +222,7 @@ div.flex-container {
     margin-top: 0px    ;
 }
 
-.page-grid div {
+.page-grid > div {
     border-style: solid;
     border-color: #F8F9FA;
     background-color: black;
@@ -302,8 +302,10 @@ div.flex-container {
 }
 
 .plan-container input {
-    background-color: #4D4D4D;
-    border: none;
+    background: none;
+    border-style: none none solid none;
+    border-color: #F8F9FA;
+    border-width: 1px;
     margin: 1vh;
     margin-left: 0;
     font-family: 'Montserrat', sans-serif;

@@ -17,7 +17,8 @@
         <div>
             <p>rank: <span><%= userWorkoutRank %></span></p>
             <p>workouts completed: <span><%= userWorkoutsCompleted %></span></p>
-            <canvas id="myChart"></canvas>
+            <p>last workout: <span><%= lastWorkout %></span></p>
+            <p>last workout date: <span><%= lastWorkoutDate %></span></p>
         </div>
         <div class="plan-container">
             <table>
@@ -67,29 +68,4 @@
         </div>
     </div>
 </body>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-    const ctx = document.getElementById('myChart');
-
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 3,
-        }]
-        },
-        options: {
-            layout: {
-                padding: {
-                    left: 80,
-                    right: 80
-                }
-            }
-        }
-    });
-    </script>
 </html>
