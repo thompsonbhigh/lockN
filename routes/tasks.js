@@ -11,7 +11,7 @@ function addDays(date, days) {
 
 function addMonths(date, months) {
     const newDate = new Date(date);
-    newDate.setDate(newDate.getMonth() + months);
+    newDate.setMonth(newDate.getMonth() + months);
     return newDate;
 }
 
@@ -36,6 +36,11 @@ router.get('/', auth, async (req, res) => {
     const tasksWeekInfo = await db.query('SELECT COUNT(*) FROM tasks WHERE status = TRUE AND user_id = $1 AND date_completed BETWEEN $2 AND $3', [req.cookies.user.id, today, week]);
     const tasksWeek = tasksWeekInfo.rows.at(0).count;
 
+    const monthDate = addMonths(date, 1);
+    const month = monthDate.toISOString().slice(0, 10);
+    const tasksMonthInfo = await db.query('SELECT COUNT(*) FROM tasks WHERE status = TRUE AND user_id = $1 AND date_completed BETWEEN $2 AND $3', [req.cookies.user.id, today, month]);
+    const tasksMonth = tasksMonthInfo.rows.at(0).count;
+
     res.render('tasks.ejs', {
         tasks: result.rows, 
         incompleteTasks: incompleteTasks, 
@@ -43,7 +48,8 @@ router.get('/', auth, async (req, res) => {
         userTaskRank: taskRank,
         userTasksCompleted: tasksCompleted,
         tasksToday: tasksToday,
-        tasksWeek: tasksWeek
+        tasksWeek: tasksWeek,
+        tasksMonth: tasksMonth
     });
 });
 
