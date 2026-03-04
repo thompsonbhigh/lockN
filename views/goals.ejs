@@ -12,15 +12,21 @@
 </header>
 
 <body>
-    <div class="goals-box">
+    <div class="page-grid">
 
-        <div class="goals-container">
+        <div>
+            <p>Placeholder for stats</p>
+        </div>
+
+        <div class="plan-container">
+            <div class="goal-btns">
+                <button id="week-btn" onclick="showWeekly()">Week</button>
+                <button id="month-btn" onclick="showMonthly()" style="color: #495057;">Month</button>
+                <button id="year-btn" onclick="showYearly()" style="color: #495057;">Year</button>
+            </div>
+
+            <div id="weekly-goals">
             <table>
-                <thead>
-                    <th colspan="3">
-                        WEEKLY GOALS
-                    </th>
-                </thead>
                 <tbody>
                     <% goals.forEach(goal => { %>
                         <% if (!goal.status && goal.type == 'weekly') { %>
@@ -60,15 +66,10 @@
             <% } else if (!incompleteWeeklyGoals) { %>
                 <p>You've completed all your weekly goals!</p>
             <% } %>
-        </div>
+            </div>
 
-        <div class="goals-container">
+            <div id="monthly-goals" style="display: none;">
             <table>
-                <thead>
-                    <th colspan="3">
-                        MONTHLY GOALS
-                    </th>
-                </thead>
                 <tbody>
                     <% goals.forEach(goal => { %>
                         <% if (!goal.status && goal.type == 'monthly') { %>
@@ -108,15 +109,10 @@
             <% } else if (!incompleteMonthlyGoals) { %>
                 <p>You've completed all your monthly goals!</p>
             <% } %>
-        </div>
+            </div>
 
-        <div class="goals-container">
+            <div id="yearly-goals" style="display: none;">
             <table>
-                <thead>
-                    <th colspan="3">
-                        YEARLY GOALS
-                    </th>
-                </thead>
                 <tbody>
                     <% goals.forEach(goal => { %>
                         <% if (!goal.status && goal.type == 'yearly') { %>
@@ -156,7 +152,63 @@
             <% } else if (!incompleteYearlyGoals) { %>
                 <p>You've completed all your yearly goals!</p>
             <% } %>
+            </div>
         </div>
     </div>
 </body>
+<script>
+    function showWeekly() {
+        const monthDiv = document.getElementById('monthly-goals');
+        const weekDiv = document.getElementById('weekly-goals');
+        const yearDiv = document.getElementById('yearly-goals');
+
+        const monthBtn = document.getElementById('month-btn');
+        const weekBtn = document.getElementById('week-btn');
+        const yearBtn = document.getElementById('year-btn');
+
+        monthBtn.style.color = '#495057';
+        yearBtn.style.color = '#495057';
+        weekBtn.style.color = '#F8F9FA';
+
+        monthDiv.style.display = 'none';
+        yearDiv.style.display = 'none';
+        weekDiv.style.display = 'block';
+    }
+
+    function showMonthly() {
+        const monthDiv = document.getElementById('monthly-goals');
+        const weekDiv = document.getElementById('weekly-goals');
+        const yearDiv = document.getElementById('yearly-goals');
+
+        const monthBtn = document.getElementById('month-btn');
+        const weekBtn = document.getElementById('week-btn');
+        const yearBtn = document.getElementById('year-btn');
+
+        weekBtn.style.color = '#495057';
+        yearBtn.style.color = '#495057';
+        monthBtn.style.color = '#F8F9FA';
+
+        weekDiv.style.display = 'none';
+        yearDiv.style.display = 'none';
+        monthDiv.style.display = 'block';
+    }
+
+    function showYearly() {
+        const monthDiv = document.getElementById('monthly-goals');
+        const weekDiv = document.getElementById('weekly-goals');
+        const yearDiv = document.getElementById('yearly-goals');
+
+        const monthBtn = document.getElementById('month-btn');
+        const weekBtn = document.getElementById('week-btn');
+        const yearBtn = document.getElementById('year-btn');
+
+        weekBtn.style.color = '#495057';
+        monthBtn.style.color = '#495057';
+        yearBtn.style.color = '#F8F9FA';
+
+        weekDiv.style.display = 'none';
+        monthDiv.style.display = 'none';
+        yearDiv.style.display = 'block';
+    }
+</script>
 </html>
