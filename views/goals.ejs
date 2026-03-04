@@ -31,13 +31,13 @@
                     <% goals.forEach(goal => { %>
                         <% if (!goal.status && goal.type == 'weekly') { %>
                             <tr>
-                                <td style="width: 3vh;">
+                                <td style="text-align: center; width: 3vh;">
                                     <form action="/goals/complete" method="POST">
                                         <button type="submit" name="goalid" value="<%= goal.id %>">✓</button>
                                     </form>
                                 </td>
                                 <td><%= goal.goal %></td>
-                                <td style="width: 3vh;">
+                                <td style="text-align: right;">
                                     <form action="/goals/delete" method="POST">
                                         <input type="hidden" name="goalid" value="<%=goal.id%>">
                                         <button type="submit">−</button>
@@ -50,7 +50,7 @@
                         <td colspan="3">
                             <form class="task-form" action="/goals/add" method="POST">
                                 <div>
-                                    <input type="text" placeholder="Enter a goal" name="goal" required>
+                                    <input type="text" placeholder="enter a goal" name="goal" required>
                                     <input type="hidden" name="goaltype" value="weekly">
                                 </div>
                                 <div>
@@ -93,7 +93,7 @@
                         <td colspan="3">
                             <form class="task-form" action="/goals/add" method="POST">
                                 <div>
-                                    <input type="text" placeholder="Enter a goal" name="goal" required>
+                                    <input type="text" placeholder="enter a goal" name="goal" required>
                                     <input type="hidden" name="goaltype" value="monthly">
                                 </div>
                                 <div>
@@ -136,7 +136,7 @@
                         <td colspan="3">
                             <form class="task-form" action="/goals/add" method="POST">
                                 <div>
-                                    <input type="text" placeholder="Enter a goal" name="goal" required>
+                                    <input type="text" placeholder="enter a goal" name="goal" required>
                                     <input type="hidden" name="goaltype" value="yearly">
                                 </div>
                                 <div>

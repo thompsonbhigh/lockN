@@ -385,6 +385,10 @@ div.flex-container {
     font-size: 64px;
 }
 
+#weekly-goals, #monthly-goals, #yearly-goals {
+    width: 100%;
+}
+
 .add-container {
     overflow: hidden;
     display: flex;
