@@ -20,7 +20,7 @@ router.get('/search', async (req, res) => {
 router.post('/', async (req, res) => {
     const exerciseId = Object.keys(req.body)[0];
     const userId = req.cookies.user.id;
-    const day = req.session.day;
+    const day = req.session.day || 0;
     const indexInfo = await db.query('SELECT index FROM workouts WHERE user_id = $1 AND day = $2 ORDER BY index DESC LIMIT 1', [userId, day]);
     if (!indexInfo.rows.at(0)) {
         index = 0;

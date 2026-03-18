@@ -11,46 +11,44 @@
             <img class="logo" src="../../assests/images/lockNWhite-01.png">
             <br>
             <% if (user) { %>
-                <a href="/logout" class="login">Logout</a>
+                <a href="/logout" class="login">logout</a>
             <% } else { %>
-                <a href="/login" class="login">Login</a>
+                <a href="/login" class="login">login</a>
             <% } %>
         </div>
-        <div class="flex-container">
-            <div class="card">
-                <h2>WORKOUTS</h2>
-                <div class="home-rank">
+        <h1 class="home-name">LOCKN</h1>
+        <% if (user) { %>
+            <div class="flex-container">
+                <div class="home-card">
+                    <h2>fitness</h2>
+                    <p>rank: <span><%= userWorkoutRank %></span></p>
+                    <a href="/plan"></a>
                 </div>
-                <p>Build a training plan that will help track workouts.</p>
-                <a href="/plan"></a>
-            </div>
 
-            <div class="card">
-                <h2>DAILY TASKS</h2>
-                <% if (user) { %>
-                    <div class="home-rank">
-                        <p>Rank</p>
-                        <%= userTaskRank %>
-                    </div>
-                <% } %>
-                <p>Make a to-do list to make sure you never forget what needs to get done.</p>
-                <a href="/tasks"></a>
-            </div>
+                <div class="home-card">
+                    <h2>tasks</h2>
+                    <p>rank: <span><%= userTaskRank %></span></p>
+                    <a href="/tasks"></a>
+                </div>
 
-            <div class="card">
-                <h2>GOALS</h2>
-                <% if (user) { %>
-                    <div class="home-rank">
-                        <p>Rank</p>
-                        <%= userGoalRank %>
-                    </div>
-                <% } %>
-                <p>Track long term goals and see your progress over time.</p>
-                <a href="/goals"></a>
+                <div class="home-card">
+                    <h2>goals</h2>
+                    <p>rank: <span><%= userGoalRank  %></span></p>
+                    <a href="/goals"></a>
+                </div>
+            </div>
+        <div class="path-flex">
+            <div class="home-card">
+                <h2>rankings</h2>
+                <p></p>
+                <a href="/leaderboard"></a>
+            </div>
+            <div class="home-card">
+                <h2>groups</h2>
+                <p>coming soon</p>
+                <!-- <a href="/groups"></a> -->
             </div>
         </div>
-        <div class="leaderboard-path">
-            <a href="/leaderboard"><h2>LEADERBOARD<span class="arrow">&#x2192</span></h2></a>
-        </div>
+        <% } %>
     </body>
 </html>

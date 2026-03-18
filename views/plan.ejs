@@ -12,35 +12,60 @@
 </header>
 
 <body>
-    <div class="plan-container">
-        <% workoutNames.forEach(name => { %>
-            <% if (name.name != null) { %>
+    <h1 class="fitness-name">fitness</h1>
+    <div class="page-grid">
+        <div>
+            <p>rank: <span><%= userWorkoutRank %></span></p>
+            <p>workouts completed: <span><%= userWorkoutsCompleted %></span></p>
+            <p>last workout: <span><%= lastWorkout %></span></p>
+            <p>last workout date: <span><%= lastWorkoutDate %></span></p>
+        </div>
+        <div class="plan-container">
             <table>
                 <thead>
-                    <th colspan="1">
-                        <%= name.name %>
-                        <form style="float: right; margin-left: -50%;" action="/plan/edit" method="POST">
-                            <button type="submit" name="editday" value="<%= name.day %>">&#9998</button> 
-                        </form>
+                    <th colspan="3">
+                        <%= workoutNames.name %>
                     </th>
+                </thead>
+                <thead>
+                    <th style="text-align: left; font-size: 40px;">exercise</th>
+                    <th style="text-align: left; font-size: 40px;">sets</th>
+                    <th style="text-align: left; font-size: 40px;">reps</th>
                 </thead>
                 <tbody>
                     <% workouts.forEach(workout => { %>
-                        <% if (workout.name == name.name && workout.name != null) { %>
+                        <% if (workout.name == workoutNames.name && workout.name != null) { %>
                             <tr>
-                                <td colspan="3">
+                                <td>
                                     <%= workout.exercise_name %>
                                 </td>
                             </tr>
                         <% } %>
-                    <% }) %>
+                    <% }); %>
                 </tbody>
             </table>
+            <% if (hasWorkedOutToday) { %>
+                <p>Good job on working out today!</p>
+            <% } else {%>
+                <form action="/plan/finish" method="POST">
+                    <button type="submit" value="<%=workoutNames.day%>" name="workoutday">finish workout</button>
+                </form>
             <% } %>
-        <% }) %>
-        <form action="/plan/edit" method="POST">
-            <button class="add-workout-btn">+ADD WORKOUT</button>
-        </form>
+            <div class="fitness-btns">
+                <form action="/plan/back" method="POST">
+                    <button type="submit" name="currentday" value="<%= workoutNames.day %>">back</button>
+                </form>
+                <form action="/plan/edit" method="POST">
+                    <button type="submit" name="editday" value="<%= workoutNames.day %>">edit</button>
+                </form>
+                <form action="/plan/edit" method="POST">
+                    <button type="submit">add</button>
+                </form>
+                <form action="/plan/next" method="POST">
+                    <button type="submit" name="currentday" value="<%= workoutNames.day %>">next</button>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>

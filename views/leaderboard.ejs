@@ -12,12 +12,41 @@
 </header>
 
 <body>
-    <div class="leaderboard-flex">
-        <div class="leaderboard-container">
+    <h1 class="rankings-name">rankings</h1>
+    <div class="leaderboard-container">
             <table>
                 <thead class="theader">
                     <th colspan="3">
-                        TASK LEADERBOARD
+                        WORKOUTS
+                    </th>
+                </thead>
+                <thead class="subheader">
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Points</th>
+                </thead>
+                <tbody>
+                    <% workoutLeaderboard.forEach(row => { %>
+                        <% if (row.username == username) { %>
+                            <tr> 
+                                <td style="color: gold;"><%=row.rank%></td>
+                                <td style="color: gold;"><%=row.username%></td>
+                                <td style="color: gold;"><%=row.workouts_completed%></td>
+                            </tr>
+                        <% } else { %>
+                            <tr>
+                                <td><%=row.rank%></td>
+                                <td><%=row.username%></td>
+                                <td><%=row.workouts_completed%></td>
+                            </tr>
+                        <% } %>
+                    <% }); %>
+                </tbody>
+            </table>
+            <table>
+                <thead class="theader">
+                    <th colspan="3">
+                        TASKS
                     </th>
                 </thead>
                 <thead class="subheader">
@@ -43,12 +72,10 @@
                     <% }); %>
                 </tbody>
             </table>
-        </div>
-        <div class="leaderboard-container">
             <table>
                 <thead class="theader">
                     <th colspan="3">
-                        GOAL LEADERBOARD
+                        GOALS
                     </th>
                 </thead>
                 <thead class="subheader">
@@ -74,7 +101,6 @@
                     <% }); %>
                 </tbody>
             </table>
-        </div>
     </div>
 </body>
 </html>

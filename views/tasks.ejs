@@ -12,51 +12,56 @@
 </header>
 
 <body>
-    <div class="plan-container">
-        <table>
-            <thead>
-                <th colspan="3">
-                    DAILY TASKS
-                </th>
-            </thead>
-            <tbody>
-                <% tasks.forEach(task => { %>
-                    <% if (!task.status) { %>
-                        <tr>
-                            <td style="text-align: center; width: 3vh;">
-                                <form action="/tasks/complete" method="POST">
-                                    <button type="submit" name="taskid" value="<%= task.id %>">✓</button>
-                                </form>
-                            </td>
-                            <td><%= task.task %></td>
-                            <td style="text-align: right;">
-                                <form action="/tasks/delete" method="POST">
-                                    <input type="hidden" name="taskid" value="<%=task.id%>">
-                                    <button type="submit">−</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <% } %>
-                <% }); %>
-                <tr>
-                    <td colspan="3">
-                        <form class="task-form" action="/tasks/add" method="POST">
-                            <div>
-                                <input type="text" placeholder="Enter a task" name="task" required>
-                            </div>
-                            <div style="text-align: right;">
-                                <button type="submit">+</button>
-                            </div>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <% if (isEmpty) { %>
-            <p>You haven't added any tasks!</p>
-        <% } else if (!incompleteTasks) { %>
-            <p>You've completed all your tasks!</p>
-        <% } %>
+    <h1 class="fitness-name">tasks</h1>
+    <div class="page-grid">
+        <div>
+            <p>rank: <span><%= userTaskRank %></span></p>
+            <p>tasks completed: <span><%= userTasksCompleted %></span></p>
+            <p>today: <span><%= tasksToday %></span></p>
+            <p>week: <span><%= tasksWeek %></span></p>
+            <p>month: <span><%= tasksMonth %></span></p>
+        </div>
+        <div class="plan-container">
+            <table>
+                <tbody>
+                    <% tasks.forEach(task => { %>
+                        <% if (!task.status) { %>
+                            <tr>
+                                <td style="text-align: center; width: 3vh;">
+                                    <form action="/tasks/complete" method="POST">
+                                        <button type="submit" name="taskid" value="<%= task.id %>">✓</button>
+                                    </form>
+                                </td>
+                                <td><%= task.task %></td>
+                                <td style="text-align: right;">
+                                    <form action="/tasks/delete" method="POST">
+                                        <input type="hidden" name="taskid" value="<%=task.id%>">
+                                        <button type="submit">−</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% }); %>
+                    <tr>
+                        <td colspan="3">
+                            <form class="task-form" action="/tasks/add" method="POST">
+                                <div>
+                                    <input type="text" placeholder="enter a task" name="task" required>
+                                </div>
+                                <div style="text-align: right;">
+                                    <button type="submit">+</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <% if (isEmpty) { %>
+                <p>You haven't added any tasks!</p>
+            <% } else if (!incompleteTasks) { %>
+                <p>You've completed all your tasks!</p>
+            <% } %>
+        </div>
     </div>
 </body>
 </html>

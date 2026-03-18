@@ -7,7 +7,8 @@ const express         = require('express'),
       tasks           = require('./routes/tasks.js'),
       goals           = require('./routes/goals.js'),
       leaderboard     = require('./routes/leaderboard.js'),
-      db              = require('./db.js');
+      db              = require('./db.js'),
+      groups          = require('./routes/groups.js');
 
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -34,19 +35,23 @@ app.use('/logout', logout);
 app.use('/tasks', tasks);
 app.use('/goals', goals);
 app.use('/leaderboard', leaderboard);
+app.use('/groups', groups);
 
 user = null;
 app.get('/', async (req, res) => {
     user = req.cookies.user;
     let userTaskRank = null;
     let userGoalRank = null;
+    let userWorkoutRank = null;
     if (user) {
+        const userWorkoutInfo = await db.query('SELECT rank from workout_leaderboard WHERE username = $1', [user.username]);
         const userTaskInfo = await db.query('SELECT rank FROM task_leaderboard WHERE username = $1', [user.username]);
         const userGoalInfo = await db.query('SELECT rank FROM goal_leaderboard WHERE username = $1', [user.username]);
+        userWorkoutRank = userWorkoutInfo.rows.at(0).rank;
         userTaskRank = userTaskInfo.rows.at(0).rank;
         userGoalRank = userGoalInfo.rows.at(0).rank;
     }
-    res.render('home', {user: user, userTaskRank: userTaskRank, userGoalRank: userGoalRank});
+    res.render('home', {user: user, userTaskRank: userTaskRank, userGoalRank: userGoalRank, userWorkoutRank: userWorkoutRank});
 });
 
 app.listen(port, () => {

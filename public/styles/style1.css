@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 html {
     background-color: black;
@@ -9,16 +10,20 @@ html {
     padding: 0;
 }
 
+body {
+    height: 99%;
+}
+
 body::after {
   content: "";
   background: url(../assests/images/plastic-texture.jpg);
-  opacity: 0.09;
+  opacity: 0.07;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;
 }
 
 .logo {
@@ -40,6 +45,7 @@ body::after {
     align-items: center;
     justify-content: center;
     gap: 1vh;
+    overflow: hidden;
 }
 
 .leaderboard-path .arrow {
@@ -49,41 +55,83 @@ body::after {
     left: 0.1em;
 }
 
-.leaderboard-path a {
-    text-decoration: none;
+.flex-container {
+    overflow: hidden;
 }
 
-.home-rank {
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 300;
-    font-size: 10rem;
-    color: white;
+@keyframes fadeInCards {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    } to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-.home-rank p {
-    font-size: 3rem;
-    margin: -3vh;
-}
-
-.card {
-    background-color: #4D4D4DB3;
+.home-card {
     text-align: center;
-    margin: min(5%, 5vh);
-    margin-top: 0;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    padding-top: 10px;
-    position: relative;
-    width: min(80%, 50vh);
-    height: 55vh;
+    width: 30%;
     display: flex;
+    justify-content: flex-start;
     flex-direction: column;
-    justify-content: space-between;
-    /* backdrop-filter: blur(5px); */
+    transform: translateY(30px);
+    opacity: 0;
+    animation: fadeInCards 0.8s 0s forwards;
 }
 
-.card a {
+.home-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.home-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.home-card h2 {
+    color: #F8F9FA;
+    font-weight: 200;
+    font-size: 64px;
+    margin-bottom: -55px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.home-card p {
+    color: #ADB5BD;
+    font-weight: 200;
+    font-size: 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.home-card button {
+    background-color: #C876FF;
+    color: #F8F9FA;
+    border-radius: 1000vw;
+    border: none;
+    width: 50%;
+    margin: 10px;
+    font-size: 36px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.home-card button:hover {
+    transform: translateY(-5px);    
+}
+
+.home-name {
+    font-size: 128px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    text-align: center;
+    color: #F8F9FA;
+    margin-bottom: 20px;
+}
+
+.home-card a {
     content: "";
     position: absolute;
     top: 0;
@@ -92,33 +140,20 @@ body::after {
     bottom: 0;
 }
 
-.card a::before {
+.home-card a::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-}
-
-.card:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    transform: scale(1.05);
-    transition: transform 0.4s;
-}
-
-h1 {
-    font-family: 'IBM Plex Mono', monospace;
-    color: #e5ddff;
-    font-size: 100px;
-    margin-bottom: -5px;
-    margin-top: -5px;
 }
 
 .login {
-    font-size: 20px;
-    color: white;
-    font-family: 'IBM Plex Mono', monospace;
+    font-size: 24px;
+    color: #E9ECEF;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
 }
 
 div.flex-container {
@@ -127,27 +162,38 @@ div.flex-container {
     justify-content: center;
 }
 
-.plan-option {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    min-height: 95vh;
+.fitness-name {
+    font-size: 64px;
+    color: #F8F9FA;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    margin: 10px;
+    margin-top: -20px;
+    margin-bottom: -5px
 }
 
-p {
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 200; 
-    font-size: 18px;
-    color: white;
-} 
+.page-grid {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    height: 70%;
+}
 
-h2 {
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 500;
-    color: white;
-    font-size: 50px;
-    margin-top: -5px;
+.page-grid p {
+    margin-top: 0px;
+}
+
+.page-grid > div {
+    border-style: solid;
+    border-color: #F8F9FA;
+    background-color: black;
+    border-width: 1px;
+    margin: 5px;
+    margin-top: 0;
+    color: #DEE2E6;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: 100;
+    text-align: center;
 }
 
 @media screen and (max-width: 600px) {
@@ -161,9 +207,24 @@ h2 {
     height: 35%;
     padding: 20px;
     padding-top: 0px;
-    background-color: #4D4D4DB3;
+    background-color: black;
     justify-self: center;
     text-align: center;
+    border: #F8F9FA;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.login-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #F8F9FA;
+    font-weight: 200;
+}
+
+.login-container p {
+    font-family: 'Montserrat', sans-serif;
+    color: #F8F9FA;
+    font-weight: 200;
 }
 
 .login-container form {
@@ -176,18 +237,21 @@ h2 {
 .login-container input {
     display: flex;
     justify-content: center;
-    background-color: #4D4D4D;
+    background-color: #212522;
     border: none;
     margin-bottom: 2vh;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 3vh;
+    font-weight: 200;
+    color: #F8F9FA;
     width: 99%;
 }
 
 .login-container button {
+    font-family: 'Montserrat', sans-serif;
     padding: 1vh 2vh;
     font-size: 18px;
-    color: white;
+    color: #F8F9FA;
     background-color: black;
     cursor: pointer;
     border: none;
@@ -196,8 +260,8 @@ h2 {
 }
 
 .login-container a {
-    color: white;
-    font-family: 'IBM Plex Mono', monospace;
+    color: #F8F9FA;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .task-form {
@@ -208,14 +272,16 @@ h2 {
 }
 
 .plan-container input {
-    background-color: #4D4D4D;
-    border: none;
+    background: none;
+    border-style: none none solid none;
+    border-color: #F8F9FA;
+    border-width: 1px;
     margin: 1vh;
     margin-left: 0;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 2.5vh;
     width: 70vh;
-    color: white;
+    color: #F8F9FA;
 }
 
 .plan-container input:focus {
@@ -226,37 +292,31 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    position: relative;
+    justify-content: space-between;
+}
+
+.plan-container button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
 }
 
 .plan-container table {
     border-collapse: collapse;
-    width: min(50vh, 90%);
-    margin: 1vh;
+    width: 100%;
 }
 
 .plan-container thead th {
-    font-family: 'IBM Plex Mono', monospace;
-    color: white;
-    background-color: #3d3d3db3;
-    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    color: #F8F9FA;
+    font-size: 64px;
     padding: 10px;
-    font-weight: 500;
+    font-weight: 200;
     text-align: center;
 }
 
-.plan-container tr:nth-child(even) {
-    background-color: #4D4D4DB3;
-}
-
-.plan-container tr {
-    background-color: #535353b3;
-}
-
 .plan-container td {
-    font-family: 'IBM Plex Mono', monospace;
-    color: white;
+    font-family: 'Montserrat', sans-serif;
+    color: #F8F9FA;
     font-size: 20px;
     padding: 10px;
     text-align: left;
@@ -265,7 +325,7 @@ h2 {
 
 .plan-container button {
     font-size: 3vh;
-    color: white;
+    color: #F8F9FA;
     background-color: transparent;
     cursor: pointer;
     border: none;
@@ -274,6 +334,34 @@ h2 {
 
 .plan-container button:hover {
     background-color: rgb(27, 27, 27);
+}
+
+.fitness-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    border: none !important;
+}
+
+.goal-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 90%;
+}
+
+.goal-btns button {
+    font-size: 64px;
+}
+
+#weekly-goals, #monthly-goals, #yearly-goals {
+    width: 100%;
+}
+
+#goal-plan-container {
+    display: flex;
+    justify-content: baseline;
 }
 
 .add-container {
@@ -286,6 +374,9 @@ h2 {
 }
 
 .add-container table {
+    width: 50%;
+    border: #F8F9FA solid 1px;
+    background-color: black;
     border-collapse: collapse;
     margin-top: 20px;
 }
@@ -295,14 +386,14 @@ h2 {
 }
 
 .add-container thead {
-    font-family: 'IBM Plex Mono', monospace;
-    color: white;
-    background-color: #3d3d3d;
+    border-bottom: #F8F9FA solid 1px;
+    font-family: 'Montserrat', sans-serif;
+    color: #F8F9FA;
     font-size: 30px;
     padding: 10px;
     display: table;
     table-layout: fixed;
-    width: min(70%, 80vh);
+    width: 100%;
     justify-self: center;
 }
 
@@ -316,8 +407,8 @@ h2 {
 .add-container tbody tr {
     display: table;
     table-layout: fixed;
-    width: min(70%, 80vh);
     justify-self: center;
+    width: 100%;
 }
 
 @media screen and (max-width: 600px) {
@@ -333,23 +424,19 @@ h2 {
     .plan-container input {
         width: 100% !important
     }
+    div.path-flex {
+        flex-direction: column;
+        gap: 1em;
+    }
 }
 
 .add-container th td {
     width: auto;
 }
 
-.add-container tr {
-    background-color: #4D4D4DB3;
-}
-
-.add-container tr:nth-child(even) {
-    background-color: #4D4D4DB3;
-}
-
 .add-container td {
-    font-family: 'IBM Plex Mono', monospace;
-    color: white;
+    font-family: 'Montserrat', sans-serif;
+    color: #F8F9FA;
     font-size: 20px;
     padding: 10px;
     text-align: left;
@@ -357,19 +444,21 @@ h2 {
 
 .add-container .add-btn {
     padding: 5px 10px;
-    font-size: 16px;
-    color: white;
-    background-color: #4D4D4DB3;
+    font-size: 24px;
+    font-weight: 100;
+    color: #F8F9FA;
+    background-color: #212529;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .add-container input {
-    background-color: #4D4D4D;
+    background-color: #212529;
+    color: #F8F9FA;
     border: none;
     margin: 1vh;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: 3vh;
     width: 100%;
     height: 5vh;
@@ -377,7 +466,7 @@ h2 {
 
 .add-container button {
     font-size: 18px;
-    color: white;
+    color: #F8F9FA;
     background-color: black;
     cursor: pointer;
     border: none;
@@ -393,9 +482,9 @@ h2 {
 
 .add-workout-btn {
     background-color: transparent;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     border: none;
-    color: white;
+    color: #F8F9FA;
     font-size: 3rem !important;
     margin-bottom: 2vh;
 }
@@ -404,9 +493,9 @@ h2 {
     margin: 2vh;
     background-color: transparent;
     bottom: 0;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     border: none;
-    color: white;
+    color: #F8F9FA;
     font-size: 5vh !important;
 }
 
@@ -414,98 +503,28 @@ h2 {
     cursor: pointer;
 }
 
-.goals-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items:baseline;
-    justify-self: center;
-}
-
-.goals-container input {
-    background-color: #4D4D4D;
-    border: none;
-    margin: 1vh;
-    margin-left: 0;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 2.5vh;
-    width: 55vh;  
-    color: white;
-}
-
 input:focus {
     outline: none;
-}
-
-.goals-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.goals-container table {
-    border-collapse: collapse;
-    width: min(90%, 50vh);
-    margin: 1vh;
-}
-
-.goals-container thead th {
-    font-family: 'IBM Plex Mono', monospace;
-    color: white;
-    background-color: #3d3d3db3;
-    font-size: 30px;
-    padding: 10px;
-    font-weight: 500;
-    text-align: center;
-}
-
-.goals-container tr:nth-child(even) {
-    background-color: #4D4D4DB3;
-}
-
-.goals-container tr {
-    background-color: #535353b3;
-}
-
-.goals-container td {
-    font-family: 'IBM Plex Mono', monospace;
-    color: white;
-    font-size: 20px;
-    padding: 10px;
-    text-align: left;
-    font-weight: 200;
-}
-
-.goals-container button {
-    font-size: 3vh;
-    color: white;
-    background-color: transparent;
-    cursor: pointer;
-    border: none;
-    text-align: center;
-}
-
-.goals-container button:hover {
-    background-color: rgb(27, 27, 27);
 }
 
 .leaderboard-container {
     overflow: hidden;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 .leaderboard-container table {
+    background-color: black;
+    border: #F8F9FA;
+    border-style: solid;
+    border-width: 1px;
     border-collapse: collapse;
     margin-top: 20px;
     width: 50vh;
 }
 
 .leaderboard-container thead {
-    background-color: #3d3d3d;
     display: table;
     table-layout: fixed;
     width: 100%;
@@ -523,54 +542,53 @@ input:focus {
     width: 100%;
 }
 
-.leaderboard-container tr {
-    background-color: #4D4D4DB3;
-}
-
-.leaderboard-container tr:nth-child(even) {
-    background-color: #4D4D4DB3;
-}
-
 .leaderboard-container td {
-    font-family: 'IBM Plex Mono', monospace;
-    color: white;
+    font-family: 'Montserrat', sans-serif;
+    color: #F8F9FA;
     font-size: 20px;
     padding: 10px;
     text-align: center;
 }
 
 .leaderboard-container .subheader {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: clamp(0.5rem, 4vw, 1.5rem);
-    color: white;
+    color: #F8F9FA;
     text-align: center;
 }
 
 .leaderboard-container .theader {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     font-size: max(2rem, 4vh);
-    color: white;
+    color: #F8F9FA;
 }
 
-.leaderboard-container th {
-    font-weight: normal;
+.rankings-name {
+    font-size: 64px;
+    color: #F8F9FA;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    justify-self: center;
+    margin: -5px;
 }
 
-.leaderboard-flex {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+.subheader th {
+    font-weight: 200;
+    color: #CED4DA;
 }
 
+.theader th {
+    font-weight: 200;
+}
 
 .edit-container input {
-    background-color: #4D4D4D;
+    background-color: #212529;
     border: none;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 2.5vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5vh;
     margin: 1vh;
     width: 95%;
-    color: white;
+    color: #F8F9FA;
 }
 
 .edit-container input:focus {
@@ -587,32 +605,25 @@ input:focus {
 }
 
 .edit-container table {
+    border: #F8F9FA solid 1px;
+    background-color: black;
     border-collapse: collapse;
     width: min(95%, 70vh);
     margin: 1vh;
 }
 
 .edit-container thead th {
-    font-family: 'IBM Plex Mono', monospace;
-    color: white;
-    background-color: #3d3d3db3;
+    font-family: 'Montserrat', sans-serif;
+    color: #F8F9FA;
     font-size: 30px;
     padding: 10px;
     font-weight: 500;
     text-align: left;
 }
 
-.edit-container tr:nth-child(even) {
-    background-color: #4D4D4DB3;
-}
-
-.edit-container tr {
-    background-color: #535353b3;
-}
-
 .edit-container td {
-    font-family: 'IBM Plex Mono', monospace;
-    color: white;
+    font-family: 'Montserrat', sans-serif;
+    color: #F8F9FA;
     font-size: 20px;
     padding: 10px;
     text-align: left;
@@ -621,12 +632,12 @@ input:focus {
 
 .edit-container button {
     font-size: 3vh;
-    color: white;
+    color: #F8F9FA;
     background-color: transparent;
     cursor: pointer;
     border: none;
     text-align: center;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .edit-container button:hover {
@@ -637,9 +648,9 @@ input:focus {
     margin: 2vh;
     text-decoration: none;
     background-color: transparent;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     border: none;
-    color: white;
+    color: #F8F9FA;
     font-size: 5vh !important;
 }
 
@@ -648,4 +659,11 @@ input:focus {
     display: flex;
     flex: row;
     justify-content: space-between;
+}
+
+.path-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5em;
 }
