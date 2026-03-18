@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
 
     const usernameExistsInfo = await db.query('SELECT COUNT(*) FROM users WHERE username = $1', [username]);
     usernameExistsCount = usernameExistsInfo.rows.at(0).count;
-    if (usernameExistsCount) {
+    if (usernameExistsCount > 0) {
         usernameExists = 'That username is taken'
         res.redirect('../createAccount');
         return;

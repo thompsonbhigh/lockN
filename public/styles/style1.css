@@ -269,6 +269,12 @@ div.flex-container {
     font-weight: 200;
 }
 
+.login-container p {
+    font-family: 'Montserrat', sans-serif;
+    color: #F8F9FA;
+    font-weight: 200;
+}
+
 .login-container form {
     display: flex;
     flex-direction: column;

@@ -20,7 +20,7 @@ router.get('/', auth, async function(req, res){
 
     const workedOutInfo = await db.query('SELECT last_workout_date FROM users WHERE id = $1', [req.cookies.user.id]);
     const lastWorkoutDate = workedOutInfo.rows.at(0).last_workout_date;
-    const hasWorkedOutToday = lastWorkoutDate.toISOString().slice(0, 10) === today;
+    const hasWorkedOutToday = lastWorkoutDate ? lastWorkoutDate.toISOString().slice(0, 10) === today : null;
 
     const getCurrentInfo = await db.query('SELECT current FROM workouts WHERE user_id = $1 AND current = TRUE', [req.cookies.user.id]);
     const currentInfo = getCurrentInfo.rows.at(0);
@@ -37,6 +37,10 @@ router.get('/', auth, async function(req, res){
     const lastWorkoutInfo = await db.query('SELECT last_workout FROM users WHERE id = $1', [req.cookies.user.id]);
     const lastWorkout = lastWorkoutInfo.rows.at(0).last_workout;
 
+    if (!workoutNames) {
+        res.redirect('plan/edit');
+    }
+
     res.render('plan', {
         workouts: workouts, 
         workoutNames: workoutNames, 
@@ -44,7 +48,7 @@ router.get('/', auth, async function(req, res){
         userWorkoutRank: userWorkoutRank, 
         userWorkoutsCompleted: userWorkoutsCompleted, 
         lastWorkout: lastWorkout,
-        lastWorkoutDate: lastWorkoutDate.toISOString().slice(0, 10)
+        lastWorkoutDate: lastWorkoutDate ? lastWorkoutDate.toISOString().slice(0, 10) : null
     });
 });
 
@@ -67,6 +71,10 @@ router.post('/delete', async (req,res) => {
 });
 
 router.get('/edit', async (req, res) => {
+    if (!currDay) {
+        currDay = 0;
+    }
+    
     const newWorkoutsInfo = await db.query(
         'SELECT exercises.name, workouts.day, workouts.id, workouts.name AS workout_name FROM workouts JOIN exercises ON workouts.exercise_id = exercises.id WHERE user_id = $1 AND day = $2 ORDER BY index ASC',
          [req.cookies.user.id, currDay]);
