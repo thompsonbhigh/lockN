@@ -389,6 +389,11 @@ div.flex-container {
     width: 100%;
 }
 
+#goal-plan-container {
+    display: flex;
+    justify-content: baseline;
+}
+
 .add-container {
     overflow: hidden;
     display: flex;
