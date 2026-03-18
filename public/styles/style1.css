@@ -251,7 +251,7 @@ div.flex-container {
     font-family: 'Montserrat', sans-serif;
     padding: 1vh 2vh;
     font-size: 18px;
-    color: white;
+    color: #F8F9FA;
     background-color: black;
     cursor: pointer;
     border: none;
@@ -260,7 +260,7 @@ div.flex-container {
 }
 
 .login-container a {
-    color: white;
+    color: #F8F9FA;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -281,7 +281,7 @@ div.flex-container {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5vh;
     width: 70vh;
-    color: white;
+    color: #F8F9FA;
 }
 
 .plan-container input:focus {
@@ -307,7 +307,7 @@ div.flex-container {
 
 .plan-container thead th {
     font-family: 'Montserrat', sans-serif;
-    color: white;
+    color: #F8F9FA;
     font-size: 64px;
     padding: 10px;
     font-weight: 200;
@@ -316,7 +316,7 @@ div.flex-container {
 
 .plan-container td {
     font-family: 'Montserrat', sans-serif;
-    color: white;
+    color: #F8F9FA;
     font-size: 20px;
     padding: 10px;
     text-align: left;
@@ -325,7 +325,7 @@ div.flex-container {
 
 .plan-container button {
     font-size: 3vh;
-    color: white;
+    color: #F8F9FA;
     background-color: transparent;
     cursor: pointer;
     border: none;
@@ -374,6 +374,9 @@ div.flex-container {
 }
 
 .add-container table {
+    width: 50%;
+    border: #F8F9FA solid 1px;
+    background-color: black;
     border-collapse: collapse;
     margin-top: 20px;
 }
@@ -383,14 +386,14 @@ div.flex-container {
 }
 
 .add-container thead {
+    border-bottom: #F8F9FA solid 1px;
     font-family: 'Montserrat', sans-serif;
-    color: white;
-    background-color: #3d3d3d;
+    color: #F8F9FA;
     font-size: 30px;
     padding: 10px;
     display: table;
     table-layout: fixed;
-    width: min(70%, 80vh);
+    width: 100%;
     justify-self: center;
 }
 
@@ -404,8 +407,8 @@ div.flex-container {
 .add-container tbody tr {
     display: table;
     table-layout: fixed;
-    width: min(70%, 80vh);
     justify-self: center;
+    width: 100%;
 }
 
 @media screen and (max-width: 600px) {
@@ -431,17 +434,9 @@ div.flex-container {
     width: auto;
 }
 
-.add-container tr {
-    background-color: #4D4D4DB3;
-}
-
-.add-container tr:nth-child(even) {
-    background-color: #4D4D4DB3;
-}
-
 .add-container td {
     font-family: 'Montserrat', sans-serif;
-    color: white;
+    color: #F8F9FA;
     font-size: 20px;
     padding: 10px;
     text-align: left;
@@ -449,16 +444,18 @@ div.flex-container {
 
 .add-container .add-btn {
     padding: 5px 10px;
-    font-size: 16px;
-    color: white;
-    background-color: #4D4D4DB3;
+    font-size: 24px;
+    font-weight: 100;
+    color: #F8F9FA;
+    background-color: #212529;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .add-container input {
-    background-color: #4D4D4D;
+    background-color: #212529;
+    color: #F8F9FA;
     border: none;
     margin: 1vh;
     font-family: 'Montserrat', sans-serif;
@@ -469,7 +466,7 @@ div.flex-container {
 
 .add-container button {
     font-size: 18px;
-    color: white;
+    color: #F8F9FA;
     background-color: black;
     cursor: pointer;
     border: none;
@@ -487,7 +484,7 @@ div.flex-container {
     background-color: transparent;
     font-family: 'Montserrat', sans-serif;
     border: none;
-    color: white;
+    color: #F8F9FA;
     font-size: 3rem !important;
     margin-bottom: 2vh;
 }
@@ -498,7 +495,7 @@ div.flex-container {
     bottom: 0;
     font-family: 'Montserrat', sans-serif;
     border: none;
-    color: white;
+    color: #F8F9FA;
     font-size: 5vh !important;
 }
 
@@ -556,14 +553,14 @@ input:focus {
 .leaderboard-container .subheader {
     font-family: 'Montserrat', sans-serif;
     font-size: clamp(0.5rem, 4vw, 1.5rem);
-    color: white;
+    color: #F8F9FA;
     text-align: center;
 }
 
 .leaderboard-container .theader {
     font-family: 'Montserrat', sans-serif;
     font-size: max(2rem, 4vh);
-    color: white;
+    color: #F8F9FA;
 }
 
 .rankings-name {
@@ -585,13 +582,13 @@ input:focus {
 }
 
 .edit-container input {
-    background-color: #4D4D4D;
+    background-color: #212529;
     border: none;
     font-family: 'Montserrat', sans-serif;
-    font-size: 2.5vh;
+    font-size: 5vh;
     margin: 1vh;
     width: 95%;
-    color: white;
+    color: #F8F9FA;
 }
 
 .edit-container input:focus {
@@ -608,6 +605,8 @@ input:focus {
 }
 
 .edit-container table {
+    border: #F8F9FA solid 1px;
+    background-color: black;
     border-collapse: collapse;
     width: min(95%, 70vh);
     margin: 1vh;
@@ -615,25 +614,16 @@ input:focus {
 
 .edit-container thead th {
     font-family: 'Montserrat', sans-serif;
-    color: white;
-    background-color: #3d3d3db3;
+    color: #F8F9FA;
     font-size: 30px;
     padding: 10px;
     font-weight: 500;
     text-align: left;
 }
 
-.edit-container tr:nth-child(even) {
-    background-color: #4D4D4DB3;
-}
-
-.edit-container tr {
-    background-color: #535353b3;
-}
-
 .edit-container td {
     font-family: 'Montserrat', sans-serif;
-    color: white;
+    color: #F8F9FA;
     font-size: 20px;
     padding: 10px;
     text-align: left;
@@ -642,7 +632,7 @@ input:focus {
 
 .edit-container button {
     font-size: 3vh;
-    color: white;
+    color: #F8F9FA;
     background-color: transparent;
     cursor: pointer;
     border: none;
@@ -660,7 +650,7 @@ input:focus {
     background-color: transparent;
     font-family: 'Montserrat', sans-serif;
     border: none;
-    color: white;
+    color: #F8F9FA;
     font-size: 5vh !important;
 }
 
