@@ -10,6 +10,10 @@ html {
     padding: 0;
 }
 
+body {
+    height: 99%;
+}
+
 body::after {
   content: "";
   background: url(../assests/images/plastic-texture.jpg);
@@ -19,7 +23,7 @@ body::after {
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;
 }
 
 .logo {
@@ -148,48 +152,6 @@ body::after {
     bottom: 0;
 }
 
-.card {
-    background-color: #4D4D4DB3;
-    text-align: center;
-    margin: min(5%, 5vh);
-    margin-top: 0;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    padding-top: 10px;
-    position: relative;
-    width: min(80%, 50vh);
-    height: 55vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* backdrop-filter: blur(5px); */
-}
-
-.card a {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.card a::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-.card:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    transform: scale(1.05);
-    transition: transform 0.4s;
-}
-
 .login {
     font-size: 24px;
     color: #E9ECEF;
@@ -216,10 +178,11 @@ div.flex-container {
 .page-grid {
     display: grid;
     grid-template-columns: 30% 70%;
+    height: 70%;
 }
 
 .page-grid p {
-    margin-top: 0px    ;
+    margin-top: 0px;
 }
 
 .page-grid > div {
@@ -234,14 +197,6 @@ div.flex-container {
     font-size: 32px;
     font-weight: 100;
     text-align: center;
-}
-
-.plan-option {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    min-height: 95vh;
 }
 
 @media screen and (max-width: 600px) {
