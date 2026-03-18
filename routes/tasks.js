@@ -31,14 +31,14 @@ router.get('/', auth, async (req, res) => {
     const tasksTodayInfo = await db.query('SELECT COUNT(*) FROM tasks WHERE status = TRUE AND user_id = $1 AND date_completed = $2', [req.cookies.user.id, today]);
     const tasksToday = tasksTodayInfo.rows.at(0).count;
 
-    const weekDate = addDays(date, 7);
+    const weekDate = addDays(date, -7);
     const week = weekDate.toISOString().slice(0, 10);
-    const tasksWeekInfo = await db.query('SELECT COUNT(*) FROM tasks WHERE status = TRUE AND user_id = $1 AND date_completed BETWEEN $2 AND $3', [req.cookies.user.id, today, week]);
+    const tasksWeekInfo = await db.query('SELECT COUNT(*) FROM tasks WHERE status = TRUE AND user_id = $1 AND date_completed BETWEEN $2 AND $3', [req.cookies.user.id, week, today]);
     const tasksWeek = tasksWeekInfo.rows.at(0).count;
 
-    const monthDate = addMonths(date, 1);
+    const monthDate = addMonths(date, -1);
     const month = monthDate.toISOString().slice(0, 10);
-    const tasksMonthInfo = await db.query('SELECT COUNT(*) FROM tasks WHERE status = TRUE AND user_id = $1 AND date_completed BETWEEN $2 AND $3', [req.cookies.user.id, today, month]);
+    const tasksMonthInfo = await db.query('SELECT COUNT(*) FROM tasks WHERE status = TRUE AND user_id = $1 AND date_completed BETWEEN $2 AND $3', [req.cookies.user.id, month, today]);
     const tasksMonth = tasksMonthInfo.rows.at(0).count;
 
     res.render('tasks.ejs', {
