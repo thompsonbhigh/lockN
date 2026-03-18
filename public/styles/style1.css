@@ -45,6 +45,7 @@ body::after {
     align-items: center;
     justify-content: center;
     gap: 1vh;
+    overflow: hidden;
 }
 
 .leaderboard-path .arrow {
@@ -52,10 +53,6 @@ body::after {
     top: 0.03em;
     font-size: 1.5em;
     left: 0.1em;
-}
-
-.leaderboard-path a {
-    text-decoration: none;
 }
 
 .flex-container {
@@ -509,98 +506,28 @@ div.flex-container {
     cursor: pointer;
 }
 
-.goals-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items:baseline;
-    justify-self: center;
-}
-
-.goals-container input {
-    background-color: #4D4D4D;
-    border: none;
-    margin: 1vh;
-    margin-left: 0;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.5vh;
-    width: 55vh;  
-    color: white;
-}
-
 input:focus {
     outline: none;
-}
-
-.goals-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.goals-container table {
-    border-collapse: collapse;
-    width: min(90%, 50vh);
-    margin: 1vh;
-}
-
-.goals-container thead th {
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    background-color: #3d3d3db3;
-    font-size: 30px;
-    padding: 10px;
-    font-weight: 500;
-    text-align: center;
-}
-
-.goals-container tr:nth-child(even) {
-    background-color: #4D4D4DB3;
-}
-
-.goals-container tr {
-    background-color: #535353b3;
-}
-
-.goals-container td {
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    font-size: 20px;
-    padding: 10px;
-    text-align: left;
-    font-weight: 200;
-}
-
-.goals-container button {
-    font-size: 3vh;
-    color: white;
-    background-color: transparent;
-    cursor: pointer;
-    border: none;
-    text-align: center;
-}
-
-.goals-container button:hover {
-    background-color: rgb(27, 27, 27);
 }
 
 .leaderboard-container {
     overflow: hidden;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 .leaderboard-container table {
+    background-color: black;
+    border: #F8F9FA;
+    border-style: solid;
+    border-width: 1px;
     border-collapse: collapse;
     margin-top: 20px;
     width: 50vh;
 }
 
 .leaderboard-container thead {
-    background-color: #3d3d3d;
     display: table;
     table-layout: fixed;
     width: 100%;
@@ -618,17 +545,9 @@ input:focus {
     width: 100%;
 }
 
-.leaderboard-container tr {
-    background-color: #4D4D4DB3;
-}
-
-.leaderboard-container tr:nth-child(even) {
-    background-color: #4D4D4DB3;
-}
-
 .leaderboard-container td {
     font-family: 'Montserrat', sans-serif;
-    color: white;
+    color: #F8F9FA;
     font-size: 20px;
     padding: 10px;
     text-align: center;
@@ -647,16 +566,23 @@ input:focus {
     color: white;
 }
 
-.leaderboard-container th {
-    font-weight: normal;
+.rankings-name {
+    font-size: 64px;
+    color: #F8F9FA;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    justify-self: center;
+    margin: -5px;
 }
 
-.leaderboard-flex {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+.subheader th {
+    font-weight: 200;
+    color: #CED4DA;
 }
 
+.theader th {
+    font-weight: 200;
+}
 
 .edit-container input {
     background-color: #4D4D4D;
