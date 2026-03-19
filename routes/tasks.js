@@ -27,17 +27,17 @@ router.get('/', auth, async (req, res) => {
     const tasksCompleted = taskInfo.rows.at(0).tasks_completed;
 
     const date = new Date();
-    const today = date.toISOString().slice(0, 10);
+    const today = date.toLocaleDateString('en-CA').slice(0, 10);
     const tasksTodayInfo = await db.query('SELECT COUNT(*) FROM tasks WHERE status = TRUE AND user_id = $1 AND date_completed = $2', [req.cookies.user.id, today]);
     const tasksToday = tasksTodayInfo.rows.at(0).count;
 
     const weekDate = addDays(date, -7);
-    const week = weekDate.toISOString().slice(0, 10);
+    const week = weekDate.toLocaleDateString('en-CA').slice(0, 10);
     const tasksWeekInfo = await db.query('SELECT COUNT(*) FROM tasks WHERE status = TRUE AND user_id = $1 AND date_completed BETWEEN $2 AND $3', [req.cookies.user.id, week, today]);
     const tasksWeek = tasksWeekInfo.rows.at(0).count;
 
     const monthDate = addMonths(date, -1);
-    const month = monthDate.toISOString().slice(0, 10);
+    const month = monthDate.toLocaleDateString('en-CA').slice(0, 10);
     const tasksMonthInfo = await db.query('SELECT COUNT(*) FROM tasks WHERE status = TRUE AND user_id = $1 AND date_completed BETWEEN $2 AND $3', [req.cookies.user.id, month, today]);
     const tasksMonth = tasksMonthInfo.rows.at(0).count;
 
@@ -59,7 +59,7 @@ router.post('/add', async (req, res) => {
 });
 
 router.post('/complete', async (req, res) => {
-    await db.query('UPDATE tasks SET status = true, date_completed = $3 WHERE user_id = $1 AND id = $2', [req.cookies.user.id, req.body.taskid, new Date()]);
+    await db.query('UPDATE tasks SET status = true, date_completed = $3 WHERE user_id = $1 AND id = $2', [req.cookies.user.id, req.body.taskid, new Date().toLocaleDateString('en-CA').slice(0, 10)]);
     await db.query('UPDATE users SET tasks_completed = tasks_completed + 1 WHERE id = $1', [req.cookies.user.id]);
     res.redirect('/tasks');
 });

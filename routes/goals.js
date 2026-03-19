@@ -44,19 +44,19 @@ router.get('/', auth, async (req, res) => {
     const incompleteYearlyGoals = result4.rows.length;
 
     const date = new Date();
-    const today = date.toISOString().slice(0, 10);
+    const today = date.toLocaleDateString('en-CA').slice(0, 10);
 
-    const year = date.toISOString().slice(0, 4);
+    const year = date.toLocaleDateString('en-CA').slice(0, 4);
     const goalsYearInfo = await db.query('SELECT COUNT(*) FROM goals WHERE status = TRUE AND user_id = $1 AND EXTRACT(YEAR FROM date_completed) = $2', [req.cookies.user.id, year]);
     const goalsYear = goalsYearInfo.rows.at(0).count;
 
     const weekDate = addDays(date, -7);
-    const week = weekDate.toISOString().slice(0, 10);
+    const week = weekDate.toLocaleDateString('en-CA').slice(0, 10);
     const goalsWeekInfo = await db.query('SELECT COUNT(*) FROM goals WHERE status = TRUE AND user_id = $1 AND date_completed BETWEEN $2 AND $3', [req.cookies.user.id, week, today]);
     const goalsWeek = goalsWeekInfo.rows.at(0).count;
 
     const monthDate = addMonths(date, -1);
-    const month = monthDate.toISOString().slice(0, 10);
+    const month = monthDate.toLocaleDateString('en-CA').slice(0, 10);
     const goalsMonthInfo = await db.query('SELECT COUNT(*) FROM goals WHERE status = TRUE AND user_id = $1 AND date_completed BETWEEN $2 AND $3', [req.cookies.user.id, month, today]);
     const goalsMonth = goalsMonthInfo.rows.at(0).count;
 
@@ -82,7 +82,7 @@ router.post('/add', async (req, res) => {
 
 router.post('/complete', async (req, res) => {
     const goalId = req.body.goalid;
-    await db.query('UPDATE goals SET status = true, date_completed = $3 WHERE user_id = $1 AND id = $2', [req.cookies.user.id, goalId, new Date()]);
+    await db.query('UPDATE goals SET status = true, date_completed = $3 WHERE user_id = $1 AND id = $2', [req.cookies.user.id, goalId, new Date().toLocaleDateString().slice(0, 10)]);
     await db.query('UPDATE users SET goals_completed = goals_completed + 1 WHERE id = $1', [req.cookies.user.id]);
     res.redirect('/goals');
 });

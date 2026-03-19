@@ -16,11 +16,11 @@ router.get('/', auth, async function(req, res){
     const userWorkoutsCompleted = userWorkoutInfo.rows.at(0).workouts_completed;
 
     const currDate = new Date();
-    const today = currDate.toISOString().slice(0, 10);
+    const today = currDate.toLocaleDateString('en-CA').slice(0, 10);
 
     const workedOutInfo = await db.query('SELECT last_workout_date FROM users WHERE id = $1', [req.cookies.user.id]);
     const lastWorkoutDate = workedOutInfo.rows.at(0).last_workout_date;
-    const hasWorkedOutToday = lastWorkoutDate ? lastWorkoutDate.toISOString().slice(0, 10) === today : null;
+    const hasWorkedOutToday = lastWorkoutDate ? lastWorkoutDate.toLocaleDateString('en-CA').slice(0, 10) === today : null;
 
     const getCurrentInfo = await db.query('SELECT current FROM workouts WHERE user_id = $1 AND current = TRUE', [req.cookies.user.id]);
     const currentInfo = getCurrentInfo.rows.at(0);
@@ -48,7 +48,7 @@ router.get('/', auth, async function(req, res){
         userWorkoutRank: userWorkoutRank, 
         userWorkoutsCompleted: userWorkoutsCompleted, 
         lastWorkout: lastWorkout,
-        lastWorkoutDate: lastWorkoutDate ? lastWorkoutDate.toISOString().slice(0, 10) : null
+        lastWorkoutDate: lastWorkoutDate ? lastWorkoutDate.toLocaleDateString('en-CA').slice(0, 10) : null
     });
 });
 
@@ -153,7 +153,7 @@ router.post('/finish', async (req, res) => {
     await db.query('UPDATE users SET last_workout = $1 WHERE id = $2', [finishName, req.cookies.user.id]);
 
     const currentDate = new Date();
-    const today = currentDate.toISOString().slice(0, 10);
+    const today = currentDate.toLocaleDateString('en-CA').slice(0, 10);
     await db.query('UPDATE users SET last_workout_date = $1 WHERE id = $2', [today, req.cookies.user.id]);
     await db.query('UPDATE users SET workouts_completed = workouts_completed + 1 WHERE id = $1', [req.cookies.user.id]);
 
