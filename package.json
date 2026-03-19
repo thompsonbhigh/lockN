@@ -28,10 +28,12 @@
     "https": "^1.0.0",
     "jsonwebtoken": "^9.0.3",
     "nodemon": "^3.1.11",
+    "openai": "^6.32.0",
     "path": "^0.12.7",
     "pbkdf2-password": "^1.2.1",
     "pg": "^8.16.3",
     "pg-promise": "^12.3.0",
-    "postgres": "^3.4.8"
+    "postgres": "^3.4.8",
+    "zod": "^4.3.6"
   }
 }

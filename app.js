@@ -8,7 +8,8 @@ const express         = require('express'),
       goals           = require('./routes/goals.js'),
       leaderboard     = require('./routes/leaderboard.js'),
       db              = require('./db.js'),
-      groups          = require('./routes/groups.js');
+      groups          = require('./routes/groups.js'),
+      ai              = require('./routes/ai.js');
 
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -36,6 +37,7 @@ app.use('/tasks', tasks);
 app.use('/goals', goals);
 app.use('/leaderboard', leaderboard);
 app.use('/groups', groups);
+app.use('/ai', ai);
 
 user = null;
 app.get('/', async (req, res) => {
